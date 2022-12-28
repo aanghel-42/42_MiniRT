@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 18:09:45 by pcatapan          #+#    #+#             */
-/*   Updated: 2022/12/28 19:17:03 by pcatapan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../inc/minirt.h"
 
 int	ft_check_input(char *str)
@@ -17,13 +5,14 @@ int	ft_check_input(char *str)
 	int	len;
 
 	len = ft_strlen(str);
-	if (str[len - 2] != '.' || str[len - 1] != 'r' || str[len] != 't')
+	if (str[len - 3] != '.' || str[len - 2] != 'r' || str[len - 1] != 't')
 		return (1);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	if (ft_check_input(argv[1]) && argc == 2)
+	if (argc != 2 || ft_check_input(argv[1]))
 		printf("Errror in the input\n");
+	return (0);
 }
