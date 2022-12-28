@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanghel <aanghel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 18:09:53 by aanghel           #+#    #+#             */
-/*   Updated: 2022/12/28 18:46:32 by aanghel          ###   ########.fr       */
+/*   Updated: 2022/12/28 19:01:03 by pcatapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-# define MIINIRT_H
+# define MINIRT_H
 
-# include "./MLX42/include/MLX42/MLX*.h"
-# include "./Libft/libft.h"
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "../Libft/libft.h"
 # include <math.h>
 
 typedef struct s_a
@@ -91,3 +91,5 @@ typedef struct s_cy
 	double		height;
 	struct s_cy	*next;
 }	t_cy;
+
+#endif
