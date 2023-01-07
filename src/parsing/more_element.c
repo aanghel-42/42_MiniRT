@@ -11,12 +11,8 @@ void	ft_check_sphere(char **row, t_minirt *minirt)
 	g = ft_atoi(row[6]);
 	b = ft_atoi(row[7]);
 	if (minirt->spheres->check)
-	{
-		tmp = (t_sp *)malloc(sizeof(t_sp));
-		tmp = minirt->spheres;
-		minirt->spheres = minirt->spheres->next;
-		minirt->spheres->prev = tmp;
-	}
+		minirt->spheres = ft_lstadd_back_sp(minirt->spheres, \
+		ft_lstnew_sp(minirt->spheres));
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		ft_exit_check(row, minirt, "RGB spheres is incorrect\n");
 	minirt->spheres->x = ft_atof(row[1]);
@@ -26,7 +22,6 @@ void	ft_check_sphere(char **row, t_minirt *minirt)
 	minirt->spheres->r = r;
 	minirt->spheres->g = g;
 	minirt->spheres->b = b;
-	minirt->spheres->next = NULL;
 	minirt->spheres->check = true;
 }
 
@@ -53,11 +48,8 @@ void	ft_check_plane(char **row, t_minirt *minirt)
 	g = ft_atoi(row[8]);
 	b = ft_atoi(row[9]);
 	if (minirt->planes->check)
-	{
-		minirt->planes->next = (t_pl *)malloc(sizeof(t_pl));
-		minirt->planes->next->prev = minirt->planes;
-		minirt->planes = minirt->planes->next;
-	}
+		minirt->planes = ft_lstadd_back_pl(minirt->planes, \
+		ft_lstnew_pl(minirt->planes));
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		ft_exit_check(row, minirt, "RGB plane is incorrect\n");
 	minirt->planes->vx = ft_atof(row[4]);
@@ -94,11 +86,8 @@ void	ft_check_cylinders(char **row, t_minirt *minirt)
 	g = ft_atoi(row[10]);
 	b = ft_atoi(row[11]);
 	if (minirt->cylinders->check)
-	{
-		minirt->cylinders->next = (t_cy *)malloc(sizeof(t_cy));
-		minirt->cylinders->next->prev = minirt->cylinders;
-		minirt->cylinders = minirt->cylinders->next;
-	}
+		minirt->cylinders = ft_lstadd_back_cy(minirt->cylinders, \
+		ft_lstnew_cy(minirt->cylinders));
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		ft_exit_check(row, minirt, "RGB Cylinder is incorrect\n");
 	minirt->cylinders->vx = ft_atof(row[4]);

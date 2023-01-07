@@ -11,7 +11,7 @@ void	ft_check_content_row(char *row, t_minirt *minirt)
 	{
 		if (row[i] != 43 && row[i] != 44 && row[i] != 45 && row[i] != 46 \
 				&& !ft_isdigit(row[i]) && row[i] != 32 && row[i] != '\n')
-			ft_exit_check(NULL, minirt, "Invalid charter in str :");
+			ft_exit_check(NULL, minirt, "Invalid charter on file.rt\n");
 		i++;
 	}
 }
@@ -31,7 +31,7 @@ int	ft_check_type(char **row, t_minirt *minirt)
 	else if (ft_strcmp(row[0], "cy"))
 		ft_check_cylinders(row, minirt);
 	else
-		ft_exit_check(row, minirt, "Elemet not valid in file\n");
+		ft_exit_check(row, minirt, "Element not valid in file\n");
 	return (1);
 }
 
