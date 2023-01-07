@@ -20,19 +20,19 @@ int	ft_check_type(char **row, t_minirt *minirt)
 		ft_check_ambient(row, minirt);
 	else if (ft_strcmp(row[0], "C"))
 		ft_check_camera(row, minirt);
-	else if (ft_strcmp(row[0], "L"))
-		ft_check_light(row, minirt);
+	// else if (ft_strcmp(row[0], "L"))
+	// 	ft_check_light(row, minirt);
 	// else if (ft_strcmp(row[0], "pl"))
 	// 	ft_check_plane(row, minirt);
 	// else if (ft_strcmp(row[0], "sp"))
 	// 	ft_check_sphere(row, minirt);
 	// else if (ft_strcmp(row[0], "cy"))
 	// 	ft_check_cylinders(row, minirt);
-	else
-	{
-		printf("ELSE\n");
-		return (0);
-	}
+	// else
+	// {
+	// 	printf("ELSE\n");
+	// 	return (0);
+	// }
 	return (1);
 }
 

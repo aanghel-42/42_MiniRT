@@ -38,6 +38,8 @@ void	ft_init(t_minirt *minirt)
 	minirt->ambient->check = false;
 	minirt->light->check = false;
 	minirt->camera->check = false;
+	minirt->w_window = 50;
+	minirt->h_window = 80;
 }
 
 int	main(int argc, char **argv)
@@ -57,4 +59,5 @@ int	main(int argc, char **argv)
 		printf("Errror in the file\n");
 		return (0);
 	}
+	ft_window(minirt);
 }
