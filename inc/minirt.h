@@ -6,17 +6,19 @@
 /*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 18:09:53 by aanghel           #+#    #+#             */
-/*   Updated: 2023/01/07 17:22:26 by pcatapan         ###   ########.fr       */
+/*   Updated: 2023/01/07 17:27:45 by pcatapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# include "../MLX42/include/MLX42/MLX42.h"
 # include "../Libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
+# include <mlx.h>
+# include <stdbool.h>
+# include "../mlx/mlx.h"
 
 typedef struct s_a
 {
@@ -95,8 +97,8 @@ typedef struct s_cy
 
 typedef struct s_minirt
 {
-	int			w_window;
-	int			h_window;
+	int			w;
+	int			h;
 	char		**data;
 	void		*mlx_ptr;
 	void		*window;
@@ -127,4 +129,9 @@ void	ft_exit_check(char **row, t_minirt *minirt, char *message);
 // Test.c
 void	ft_print_lst_ambient(t_a *token);
 
+//utils.c
+int		ft_exit(void);
+
+//window.c
+void	ft_window(t_minirt *minirt);
 #endif

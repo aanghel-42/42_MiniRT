@@ -6,7 +6,7 @@
 #    By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 16:38:58 by aanghel           #+#    #+#              #
-#    Updated: 2023/01/07 17:16:32 by pcatapan         ###   ########.fr        #
+#    Updated: 2023/01/07 17:27:10 by pcatapan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ MLX = -l mlx -framework openGL -framework AppKit
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@$(CC) $(FLAGS) $(SRCS) -o $(NAME)
+	@$(CC) $(FLAGS) $(MLX) $(SRCS) -o $(NAME)
 
 clean: 
 	@rm -f $(OBJS)

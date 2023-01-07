@@ -42,6 +42,8 @@ void	ft_init(t_minirt *minirt)
 	minirt->ambient->check = false;
 	minirt->light->check = false;
 	minirt->camera->check = false;
+	minirt->w_window = 50;
+	minirt->h_window = 80;
 	minirt->data = NULL;
 }
 
@@ -61,4 +63,5 @@ int	main(int argc, char **argv)
 		return (0);
 	ft_exit_check(NULL, minirt, NULL);
 	//ft_print_lst_ambient(minirt->ambient);
+	ft_window(minirt);
 }

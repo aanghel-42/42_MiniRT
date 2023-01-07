@@ -6,7 +6,7 @@
 #    By: aanghel <aanghel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/22 22:29:02 by aanghel           #+#    #+#              #
-#    Updated: 2022/12/22 18:44:45 by aanghel          ###   ########.fr        #
+#    Updated: 2023/01/07 16:20:38 by aanghel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC= gnl/get_next_line.c \
 CC= gcc
 
 FLAGS= -Wall -Werror -Wextra
+
 
 OBJS= $(SRC:%.c=%.o)
 
