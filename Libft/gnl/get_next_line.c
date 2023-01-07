@@ -3,104 +3,115 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanghel <aanghel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 11:58:59 by aanghel           #+#    #+#             */
-/*   Updated: 2022/07/22 22:27:47 by aanghel          ###   ########.fr       */
+/*   Created: 2022/01/22 19:11:38 by pcatapan          #+#    #+#             */
+/*   Updated: 2023/01/06 23:24:25 by pcatapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_read(int fd, char *str)
+char	*ft_n_line(char *save)
 {
-	int			result;
-	char		*buf;
-
-	result = 1;
-	buf = (char *)malloc((sizeof(char)) * BUFFER_SIZE + 1);
-	if (buf == NULL)
-		return (NULL);
-	while (!(ft_strchr(str, '\n')) && (result != 0))
-	{
-		result = read(fd, buf, BUFFER_SIZE);
-		if (result == -1)
-		{
-			free(buf);
-			return (NULL);
-		}
-		buf[result] = '\0';
-		str = ft_strjoin(str, buf);
-	}
-	free(buf);
-	return (str);
-}
-
-char	*ft_nline(char *str)
-{
-	int		i;
-	char	*out;
-
-	i = 0;
-	if (!str[i])
-		return (NULL);
-	while (str[i] && str[i] != '\n')
-		i++;
-	out = (char *)malloc((sizeof(char)) * (i + 2));
-	if (out == NULL)
-		return (NULL);
-	i = 0;
-	while (str[i] && str[i] != '\n')
-	{
-		out[i] = str[i];
-		i++;
-	}
-	if (str[i] == '\n')
-	{
-		out[i] = str[i];
-		i++;
-	}
-	out[i] = '\0';
-	return (out);
-}
-
-char	*ft_fline(char *str)
-{
-	char	*fline;
 	int		i;
 	int		j;
+	char	*nline;
 
 	i = 0;
-	j = 0;
-	while (str[i] && str[i] != '\n')
+	while (save[i] && save[i] != '\n')
 		i++;
-	if (!str[i])
+	if (!save[i])
 	{
-		free(str);
+		free(save);
 		return (NULL);
 	}
-	fline = (char *)malloc(ft_strlen(str) - i + 1);
-	if (fline == NULL)
+	nline = (char *)malloc(sizeof(char) * (ft_strlen(save) - i + 1));
+	if (!nline)
+	{
+		free(save);
 		return (NULL);
+	}
 	i++;
-	while (str[i] != '\0')
-		fline[j++] = str[i++];
-	fline[j] = '\0';
-	free(str);
-	return (fline);
+	j = 0;
+	while (save[i] != '\0')
+		nline[j++] = save[i++];
+	nline[j] = '\0';
+	free(save);
+	return (nline);
+}
+
+char	*ft_p_line(char *save)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	if (!save[i])
+		return (NULL);
+	while (save[i] && save[i] != '\n')
+		i++;
+	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (save[i] && save[i] != '\n')
+	{
+		line[i] = save[i];
+		i++;
+	}
+	if (save[i] == '\n')
+	{
+		line[i] = save[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+char	*ft_reads(char *save, int fd)
+{
+	char	*buffer;
+	int		n;
+
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (NULL);
+	n = 1;
+	while (!ft_strchr(save, '\n') && n != 0)
+	{
+		n = read(fd, buffer, BUFFER_SIZE);
+		if (n == -1)
+		{
+			free(buffer);
+			free(save);
+			return (NULL);
+		}
+		buffer[n] = '\0';
+		save = ft_strjoin(save, buffer);
+	}
+	free(buffer);
+	return (save);
 }
 
 char	*get_next_line(int fd)
 {
-	static char		*str;
-	char			*line;
+	static char	*save;
+	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0)
 		return (NULL);
-	str = ft_read(fd, str);
-	if (str == NULL)
+	if (!save)
+	{
+		save = (char *)malloc(sizeof(char) * 1);
+		if (!save)
+			return (NULL);
+		save[0] = '\0';
+	}
+	save = ft_reads(save, fd);
+	if (!save)
 		return (NULL);
-	line = ft_nline(str);
-	str = ft_fline(str);
+	line = ft_p_line(save);
+	save = ft_n_line(save);
 	return (line);
 }

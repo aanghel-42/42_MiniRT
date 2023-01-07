@@ -1,38 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/22 18:22:59 by aanghel           #+#    #+#             */
-/*   Updated: 2023/01/07 01:09:18 by pcatapan         ###   ########.fr       */
+/*   Created: 2023/01/06 21:34:09 by pcatapan          #+#    #+#             */
+/*   Updated: 2023/01/06 22:31:55 by pcatapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
 /**
- * @brief Comparete two string
+ * @brief Search needle in haystack
  * 
- * @param s1 string one
- * @param s2 string two
+ * @param haystack Str in which to search
+ * @param needle Str to serch
  * 
- * @return int 1 if the string is equal,
- * 0 if the string isn't equal
+ * @return 0 if don't find the needle. 1 if find the needle
  */
-int	ft_strcmp(char *s1, char *s2)
+int	ft_strstr(char *haystack, char *needle)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	if (ft_strlen(s1) != ft_strlen(s2))
+	if (!haystack || !needle)
 		return (0);
-	while (s1[i] == s2[i])
+	if (needle[0] == '\0')
+		return (0);
+	while (haystack[i])
 	{
+		j = 0;
+		if (needle[j] == haystack[i])
+		{
+			while (needle[j] == haystack[i + j] && needle[j])
+				j++;
+			if (!needle[j])
+				return (1);
+		}
 		i++;
-		if (!s1[i] && !s2[i])
-			return (1);
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aanghel <aanghel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:21:13 by aanghel           #+#    #+#             */
-/*   Updated: 2022/12/22 18:50:23 by aanghel          ###   ########.fr       */
+/*   Updated: 2023/01/07 01:23:24 by pcatapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,16 @@ int				ft_isascii(int c);
 int				ft_isalpha(int c);
 int				ft_isprint(int c);
 int				ft_isdigit(int c);
-int				ft_strcmp(const char *s1, const char *s2);
+int				ft_strcmp(char *s1, char *s2);
 int				ft_lstsize(t_list *lst);
 int				ft_toupper(int c);
 int				ft_tolower(int c);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_atoi(const char *str);
-char			*ft_strchr(const char *s, int c);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
+int				ft_strstr(char *haystack, char *needle);
+int				ft_strchar(char	*str, int c);
+char			*ft_strchr(const char *s, int c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strnstr(const char *haystack, const char *nd, size_t len);
 char			**ft_split(char const *s, char c);
@@ -53,6 +55,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_searchstrchr(char const *str, char **array);
 char			*ft_strtrim2(char *str, char del);
 char			*ft_strtrim3(char *str, char *del);
+char			*ft_replace_char(char *str, char find, char replace);
 void			*ft_calloc(size_t count, size_t size);
 void			ft_striteri(char *s, void (*f)(unsigned int, char *));
 void			*ft_memchr(const void *s, int c, size_t n);
