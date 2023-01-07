@@ -6,11 +6,37 @@
 /*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:11:38 by pcatapan          #+#    #+#             */
-/*   Updated: 2023/01/06 23:24:25 by pcatapan         ###   ########.fr       */
+/*   Updated: 2023/01/07 16:02:46 by pcatapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+
+char	*ft_strjoin_gnl(char *s1, char *s2)
+{
+	char	*str;
+	int		i;
+	int		c;
+
+	if (!s1 || !s2)
+		return (NULL);
+	str = (char *)malloc(sizeof(char)
+			* (ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1));
+	if (str == NULL)
+		return (0);
+	i = 0;
+	c = 0;
+	while (s1[c] != '\0')
+	{
+		str[c] = s1[c];
+		c++;
+	}
+	while (s2[i] != '\0')
+		str[c++] = s2[i++];
+	str[c] = '\0';
+	free(s1);
+	return (str);
+}
 
 char	*ft_n_line(char *save)
 {
@@ -88,7 +114,7 @@ char	*ft_reads(char *save, int fd)
 			return (NULL);
 		}
 		buffer[n] = '\0';
-		save = ft_strjoin(save, buffer);
+		save = ft_strjoin_gnl(save, buffer);
 	}
 	free(buffer);
 	return (save);

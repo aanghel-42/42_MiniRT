@@ -6,7 +6,7 @@
 /*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 22:21:13 by aanghel           #+#    #+#             */
-/*   Updated: 2023/01/07 01:23:24 by pcatapan         ###   ########.fr       */
+/*   Updated: 2023/01/07 16:23:21 by pcatapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void			*ft_memmove(void *dst, const void *src, size_t len);
 void			ft_print_lst(t_list *token);
 void			ft_print_matrix(char **matrix);
 void			ft_free_matrix(char **matrix);
+double			ft_atof(const char *str);
 size_t			ft_strlen(const char *s);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlcat(char *dst, const char *src, size_t dstsize);

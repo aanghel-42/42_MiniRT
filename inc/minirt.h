@@ -6,7 +6,7 @@
 /*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 18:09:53 by aanghel           #+#    #+#             */
-/*   Updated: 2023/01/07 00:48:47 by pcatapan         ###   ########.fr       */
+/*   Updated: 2023/01/07 17:22:26 by pcatapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,18 @@ typedef struct s_l
 	double		bright;
 }	t_l;
 
+typedef struct s_sp
+{
+	int			r;
+	int			g;
+	int			b;
+	double		x;
+	double		y;
+	double		z;
+	double		diameter;
+	struct s_sp	*next;
+}	t_sp;
+
 typedef struct s_pl
 {
 	int			r;
@@ -64,18 +76,6 @@ typedef struct s_pl
 	double		vector_z;
 	struct s_pl	*next;
 }	t_pl;
-
-typedef struct s_sp
-{
-	int			r;
-	int			g;
-	int			b;
-	double		x;
-	double		y;
-	double		z;
-	double		diameter;
-	struct s_sp	*next;
-}	t_sp;
 
 typedef struct s_cy
 {
@@ -111,9 +111,20 @@ typedef struct s_minirt
 // DIR Parsing
 int		ft_parsing(t_minirt	*minirt);
 void	ft_check_ambient(char **row, t_minirt *minirt);
-void	ft_exit_check(char **row, t_minirt *minirt, char *message);
 void	ft_check_light(char **row, t_minirt *minirt);
 void	ft_check_camera(char **row, t_minirt *minirt);
 void	ft_check_ambient(char **row, t_minirt *minirt);
+void	ft_check_cylinders(char **row, t_minirt *minirt);
+void	ft_check_plane(char **row, t_minirt *minirt);
+void	ft_check_sphere(char **row, t_minirt *minirt);
+
+// DIR Free
+void	ft_free_cy(t_cy *elements);
+void	ft_free_sp(t_sp *elements);
+void	ft_free_pl(t_pl *elements);
+void	ft_exit_check(char **row, t_minirt *minirt, char *message);
+
+// Test.c
+void	ft_print_lst_ambient(t_a *token);
 
 #endif

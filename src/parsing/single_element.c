@@ -5,9 +5,9 @@ void	ft_check_ambient(char **row, t_minirt *minirt)
 	int		r;
 	int		g;
 	int		b;
-	float	light;
+	double	light;
 
-	light = ft_atoi(row[1]);
+	light = ft_atof(row[1]);
 	r = ft_atoi(row[2]);
 	g = ft_atoi(row[3]);
 	b = ft_atoi(row[4]);
@@ -27,13 +27,13 @@ void	ft_check_ambient(char **row, t_minirt *minirt)
 void	ft_check_camera(char **row, t_minirt *minirt)
 {
 	int		fov;
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 
-	x = ft_atoi(row[4]);
-	y = ft_atoi(row[5]);
-	z = ft_atoi(row[6]);
+	x = ft_atof(row[4]);
+	y = ft_atof(row[5]);
+	z = ft_atof(row[6]);
 	fov = ft_atoi(row[7]);
 	if (minirt->camera->check)
 		ft_exit_check(row, minirt, "Camera is present\n");
@@ -41,9 +41,9 @@ void	ft_check_camera(char **row, t_minirt *minirt)
 		ft_exit_check(row, minirt, "FOV is incorrect\n");
 	if ((x < -1 || x > 1) || (y < -1 || y > 1) || (z < -1 || z > 1))
 		ft_exit_check(row, minirt, "Vector 3D Camera is incorrect\n");
-	minirt->camera->x = ft_atoi(row[1]);
-	minirt->camera->y = ft_atoi(row[2]);
-	minirt->camera->z = ft_atoi(row[3]);
+	minirt->camera->x = ft_atof(row[1]);
+	minirt->camera->y = ft_atof(row[2]);
+	minirt->camera->z = ft_atof(row[3]);
 	minirt->camera->vector_x = x;
 	minirt->camera->vector_y = y;
 	minirt->camera->vector_z = z;
@@ -56,9 +56,9 @@ void	ft_check_light(char **row, t_minirt *minirt)
 	int		r;
 	int		g;
 	int		b;
-	float	brightness;
+	double	brightness;
 
-	brightness = ft_atoi(row[4]);
+	brightness = ft_atof(row[4]);
 	r = ft_atoi(row[5]);
 	g = ft_atoi(row[6]);
 	b = ft_atoi(row[7]);
@@ -68,9 +68,9 @@ void	ft_check_light(char **row, t_minirt *minirt)
 		ft_exit_check(row, minirt, "Brightness is incorrect\n");
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		ft_exit_check(row, minirt, "RGB Light is incorrect\n");
-	minirt->light->x = ft_atoi(row[1]);
-	minirt->light->y = ft_atoi(row[2]);
-	minirt->light->z = ft_atoi(row[3]);
+	minirt->light->x = ft_atof(row[1]);
+	minirt->light->y = ft_atof(row[2]);
+	minirt->light->z = ft_atof(row[3]);
 	minirt->light->bright = brightness;
 	minirt->light->r = r;
 	minirt->light->g = g;
