@@ -6,7 +6,7 @@
 /*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 18:09:53 by aanghel           #+#    #+#             */
-/*   Updated: 2023/01/07 17:27:45 by pcatapan         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:36:49 by pcatapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ typedef struct s_c
 	double		x;
 	double		y;
 	double		z;
-	double		vector_x;
-	double		vector_y;
-	double		vector_z;
+	double		vx;
+	double		vy;
+	double		vz;
 }	t_c;
 
 typedef struct s_l
@@ -58,11 +58,13 @@ typedef struct s_sp
 	int			r;
 	int			g;
 	int			b;
+	bool		check;
 	double		x;
 	double		y;
 	double		z;
 	double		diameter;
 	struct s_sp	*next;
+	struct s_sp	*prev;
 }	t_sp;
 
 typedef struct s_pl
@@ -70,13 +72,15 @@ typedef struct s_pl
 	int			r;
 	int			g;
 	int			b;
+	bool		check;
 	double		x;
 	double		y;
 	double		z;
-	double		vector_x;
-	double		vector_y;
-	double		vector_z;
+	double		vx;
+	double		vy;
+	double		vz;
 	struct s_pl	*next;
+	struct s_pl	*prev;
 }	t_pl;
 
 typedef struct s_cy
@@ -84,15 +88,17 @@ typedef struct s_cy
 	int			r;
 	int			g;
 	int			b;
+	bool		check;
 	double		x;
 	double		y;
 	double		z;
-	double		vector_x;
-	double		vector_y;
-	double		vector_z;
+	double		vx;
+	double		vy;
+	double		vz;
 	double		diameter;
 	double		height;
 	struct s_cy	*next;
+	struct s_cy	*prev;
 }	t_cy;
 
 typedef struct s_minirt
@@ -126,12 +132,13 @@ void	ft_free_sp(t_sp *elements);
 void	ft_free_pl(t_pl *elements);
 void	ft_exit_check(char **row, t_minirt *minirt, char *message);
 
-// Test.c
-void	ft_print_lst_ambient(t_a *token);
-
 //utils.c
-int		ft_exit(void);
+int		ft_exit(t_minirt *minirt);
 
 //window.c
 void	ft_window(t_minirt *minirt);
+
+// Test.c
+void	ft_print_lst_ambient(t_a *token);
+void	ft_print_plane(t_pl *planes);
 #endif

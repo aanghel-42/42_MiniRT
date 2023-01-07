@@ -1,6 +1,5 @@
 #include "../../inc/minirt.h"
 
-
 void	ft_exit_check(char **row, t_minirt *minirt, char *message)
 {
 	if (row)

@@ -6,7 +6,7 @@
 /*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:15:39 by aanghel           #+#    #+#             */
-/*   Updated: 2023/01/06 23:05:29 by pcatapan         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:26:14 by pcatapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	ft_strchar(char	*str, int c)
 	i = 0;
 	if (!str)
 		return (0);
-	printf("1\n");
 	while (str[i])
 	{
 		if (str[i] == (char)c)

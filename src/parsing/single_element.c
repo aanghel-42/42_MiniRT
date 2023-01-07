@@ -44,9 +44,9 @@ void	ft_check_camera(char **row, t_minirt *minirt)
 	minirt->camera->x = ft_atof(row[1]);
 	minirt->camera->y = ft_atof(row[2]);
 	minirt->camera->z = ft_atof(row[3]);
-	minirt->camera->vector_x = x;
-	minirt->camera->vector_y = y;
-	minirt->camera->vector_z = z;
+	minirt->camera->vx = x;
+	minirt->camera->vy = y;
+	minirt->camera->vz = z;
 	minirt->camera->fov = fov;
 	minirt->camera->check = true;
 }

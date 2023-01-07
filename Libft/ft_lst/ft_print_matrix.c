@@ -6,7 +6,7 @@
 /*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:45:46 by aanghel           #+#    #+#             */
-/*   Updated: 2023/01/07 01:13:03 by pcatapan         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:47:29 by pcatapan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	ft_print_matrix(char **matrix)
 
 	i = -1;
 	while (matrix[++i])
-		printf("%s\n", matrix[i]);
+		printf("%s", matrix[i]);
 }

@@ -34,16 +34,26 @@ char	**ft_get_content_file(char *file)
 void	ft_init(t_minirt *minirt)
 {
 	minirt->ambient = (t_a *)malloc(sizeof(t_a));
-	minirt->light = (t_l *)malloc(sizeof(t_l));
-	minirt->camera = (t_c *)malloc(sizeof(t_c));
-	minirt->planes = (t_pl *)malloc(sizeof(t_pl));
-	minirt->spheres = (t_sp *)malloc(sizeof(t_sp));
-	minirt->cylinders = (t_cy *)malloc(sizeof(t_cy));
 	minirt->ambient->check = false;
+	minirt->light = (t_l *)malloc(sizeof(t_l));
 	minirt->light->check = false;
+	minirt->camera = (t_c *)malloc(sizeof(t_c));
 	minirt->camera->check = false;
-	minirt->w_window = 50;
-	minirt->h_window = 80;
+	minirt->planes = (t_pl *)malloc(sizeof(t_pl));
+	minirt->planes->next = NULL;
+	minirt->planes->prev = NULL;
+	minirt->planes->check = false;
+	minirt->spheres = (t_sp *)malloc(sizeof(t_sp));
+	minirt->spheres->next = NULL;
+	minirt->spheres->prev = NULL;
+	minirt->spheres->check = false;
+	minirt->cylinders = (t_cy *)malloc(sizeof(t_cy));
+	minirt->cylinders->next = NULL;
+	minirt->cylinders->prev = NULL;
+	minirt->cylinders->check = false;
+	minirt->w = 50;
+	minirt->h = 80;
+	minirt->data = (char **)malloc(sizeof(char));
 	minirt->data = NULL;
 }
 
@@ -61,7 +71,7 @@ int	main(int argc, char **argv)
 	minirt->data = ft_get_content_file(argv[1]);
 	if (!(ft_parsing(minirt)))
 		return (0);
+	ft_print_plane(minirt->planes);
+	//ft_window(minirt);
 	ft_exit_check(NULL, minirt, NULL);
-	//ft_print_lst_ambient(minirt->ambient);
-	ft_window(minirt);
 }
