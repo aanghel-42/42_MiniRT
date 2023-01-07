@@ -5,15 +5,17 @@ void	ft_check_sphere(char **row, t_minirt *minirt)
 	int		r;
 	int		g;
 	int		b;
+	t_sp	*tmp;
 
 	r = ft_atoi(row[5]);
 	g = ft_atoi(row[6]);
 	b = ft_atoi(row[7]);
 	if (minirt->spheres->check)
 	{
-		minirt->spheres->next = (t_sp *)malloc(sizeof(t_sp));
-		minirt->spheres->next->prev = minirt->spheres;
+		tmp = (t_sp *)malloc(sizeof(t_sp));
+		tmp = minirt->spheres;
 		minirt->spheres = minirt->spheres->next;
+		minirt->spheres->prev = tmp;
 	}
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		ft_exit_check(row, minirt, "RGB spheres is incorrect\n");

@@ -20,3 +20,11 @@ void	ft_exit_check(char **row, t_minirt *minirt, char *message)
 		printf("%s", message);
 	exit(0);
 }
+
+int	ft_exit(t_minirt *minirt)
+{
+	ft_exit_check(NULL, minirt, NULL);
+	mlx_destroy_window(minirt->mlx_ptr, minirt->window);
+	exit(0);
+	return (0);
+}

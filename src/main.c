@@ -71,6 +71,7 @@ int	main(int argc, char **argv)
 	minirt->data = ft_get_content_file(argv[1]);
 	if (!(ft_parsing(minirt)))
 		return (0);
+	ft_return_head(minirt);
 	ft_print_plane(minirt->planes);
 	//ft_window(minirt);
 	ft_exit_check(NULL, minirt, NULL);
