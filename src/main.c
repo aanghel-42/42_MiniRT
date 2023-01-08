@@ -51,8 +51,8 @@ void	ft_init(t_minirt *minirt)
 	minirt->cylinders->next = NULL;
 	minirt->cylinders->prev = NULL;
 	minirt->cylinders->check = false;
-	minirt->w = 50;
-	minirt->h = 80;
+	minirt->w = WIDTH;
+	minirt->h = HEIGHT;
 	minirt->data = (char **)malloc(sizeof(char));
 	minirt->data = NULL;
 }

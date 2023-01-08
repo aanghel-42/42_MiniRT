@@ -18,9 +18,9 @@ void	ft_check_ambient(char **row, t_minirt *minirt)
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		ft_exit_check(row, minirt, "RGB Ambient is incorrect\n");
 	minirt->ambient->light = light;
-	minirt->ambient->r = r;
-	minirt->ambient->g = g;
-	minirt->ambient->b = b;
+	minirt->ambient->rgb.r = r;
+	minirt->ambient->rgb.g = g;
+	minirt->ambient->rgb.b = b;
 	minirt->ambient->check = true;
 }
 
@@ -41,12 +41,12 @@ void	ft_check_camera(char **row, t_minirt *minirt)
 		ft_exit_check(row, minirt, "FOV is incorrect\n");
 	if ((x < -1 || x > 1) || (y < -1 || y > 1) || (z < -1 || z > 1))
 		ft_exit_check(row, minirt, "Vector 3D Camera is incorrect\n");
-	minirt->camera->x = ft_atof(row[1]);
-	minirt->camera->y = ft_atof(row[2]);
-	minirt->camera->z = ft_atof(row[3]);
-	minirt->camera->vx = x;
-	minirt->camera->vy = y;
-	minirt->camera->vz = z;
+	minirt->camera->cor.x = ft_atof(row[1]);
+	minirt->camera->cor.y = ft_atof(row[2]);
+	minirt->camera->cor.z = ft_atof(row[3]);
+	minirt->camera->vec.x = x;
+	minirt->camera->vec.y = y;
+	minirt->camera->vec.z = z;
 	minirt->camera->fov = fov;
 	minirt->camera->check = true;
 }
@@ -68,12 +68,12 @@ void	ft_check_light(char **row, t_minirt *minirt)
 		ft_exit_check(row, minirt, "Brightness is incorrect\n");
 	if ((r < 0 || r > 255) || (g < 0 || g > 255) || (b < 0 || b > 255))
 		ft_exit_check(row, minirt, "RGB Light is incorrect\n");
-	minirt->light->x = ft_atof(row[1]);
-	minirt->light->y = ft_atof(row[2]);
-	minirt->light->z = ft_atof(row[3]);
+	minirt->light->cor.x = ft_atof(row[1]);
+	minirt->light->cor.y = ft_atof(row[2]);
+	minirt->light->cor.z = ft_atof(row[3]);
 	minirt->light->bright = brightness;
-	minirt->light->r = r;
-	minirt->light->g = g;
-	minirt->light->b = b;
+	minirt->light->rgb.r = r;
+	minirt->light->rgb.g = g;
+	minirt->light->rgb.b = b;
 	minirt->light->check = true;
 }
