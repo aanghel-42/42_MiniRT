@@ -6,7 +6,7 @@
 #    By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 16:38:58 by aanghel           #+#    #+#              #
-#    Updated: 2023/01/07 21:43:29 by pcatapan         ###   ########.fr        #
+#    Updated: 2023/01/08 05:01:21 by pcatapan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = Libft/gnl/get_next_line.c \
 	   src/parsing/*.c \
 	   src/free/*.c \
 	   src/shape/*.c \
+	   src/vector/*.c \
 
 OBJS = $(SRC:%.c=%.o)
 
