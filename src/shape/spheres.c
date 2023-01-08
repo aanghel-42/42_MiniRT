@@ -18,12 +18,12 @@ t_sp	*ft_lstnew_sp(t_sp *sp)
 	token = (t_sp *)malloc(sizeof(t_sp));
 	if (!token)
 		return (NULL);
-	token->r = 0;
-	token->g = 0;
-	token->b = 0;
-	token->x = 0.0;
-	token->y = 0.0;
-	token->z = 0.0;
+	token->rgb.r = 0;
+	token->rgb.g = 0;
+	token->rgb.b = 0;
+	token->cor.x = 0.0;
+	token->cor.y = 0.0;
+	token->cor.z = 0.0;
 	token->diameter = 0.0;
 	token->check = false;
 	token->prev = NULL;

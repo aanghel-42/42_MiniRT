@@ -31,7 +31,7 @@ int	ft_check_type(char **row, t_minirt *minirt)
 	else if (ft_strcmp(row[0], "cy"))
 		ft_check_cylinders(row, minirt);
 	else if (ft_strcmp(row[0], "\n"))
-		return (0);
+		return (1);
 	else
 		ft_exit_check(row, minirt, "Element not valid in file\n");
 	return (1);
@@ -55,5 +55,7 @@ int	ft_parsing(t_minirt *minirt)
 		ft_free_matrix(rows);
 		i++;
 	}
+	ft_free_matrix(minirt->data);
+	minirt->data = NULL;
 	return (1);
 }

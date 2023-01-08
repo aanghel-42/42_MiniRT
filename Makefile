@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+         #
+#    By: aanghel <aanghel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 16:38:58 by aanghel           #+#    #+#              #
-#    Updated: 2023/01/08 05:01:21 by pcatapan         ###   ########.fr        #
+#    Updated: 2023/01/08 18:32:42 by aanghel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = Libft/gnl/get_next_line.c \
 	   src/free/*.c \
 	   src/shape/*.c \
 	   src/vector/*.c \
+	   src/scene/*.c \
 
 OBJS = $(SRC:%.c=%.o)
 

@@ -34,24 +34,28 @@ char	**ft_get_content_file(char *file)
 void	ft_init(t_minirt *minirt)
 {
 	minirt->ambient = (t_a *)malloc(sizeof(t_a));
-	minirt->ambient->check = false;
 	minirt->light = (t_l *)malloc(sizeof(t_l));
-	minirt->light->check = false;
 	minirt->camera = (t_c *)malloc(sizeof(t_c));
-	minirt->camera->check = false;
 	minirt->planes = (t_pl *)malloc(sizeof(t_pl));
+	minirt->spheres = (t_sp *)malloc(sizeof(t_sp));
+	minirt->cylinders = (t_cy *)malloc(sizeof(t_cy));
+	minirt->data = (char **)malloc(sizeof(char));
+	if (!minirt->ambient || !minirt->light || !minirt->camera || \
+		!minirt->planes || !minirt->spheres || !minirt->cylinders || \
+		!minirt->data)
+		ft_exit_check(NULL, minirt, NULL);
+	minirt->ambient->check = false;
+	minirt->light->check = false;
+	minirt->camera->check = false;
 	minirt->planes->next = NULL;
 	minirt->planes->prev = NULL;
 	minirt->planes->check = false;
-	minirt->spheres = (t_sp *)malloc(sizeof(t_sp));
 	minirt->spheres->next = NULL;
 	minirt->spheres->prev = NULL;
 	minirt->spheres->check = false;
-	minirt->cylinders = (t_cy *)malloc(sizeof(t_cy));
 	minirt->cylinders->next = NULL;
 	minirt->cylinders->prev = NULL;
 	minirt->cylinders->check = false;
-	minirt->data = (char **)malloc(sizeof(char));
 	minirt->data = NULL;
 }
 
@@ -72,8 +76,5 @@ int	main(int argc, char **argv)
 	ft_print_spheres(minirt->spheres);
 	ft_print_planes(minirt->planes);
 	ft_print_cylinders(minirt->cylinders);
-	ft_init_mlx(minirt);
-	ft_ray_tracing(minirt);
-	// ft_return_head(minirt);
-	ft_exit_check(NULL, minirt, NULL);
+	ft_create_scene(minirt);
 }

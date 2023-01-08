@@ -5,9 +5,9 @@ void	ft_print_lst_ambient(t_a *token)
 	t_a	*a;
 
 	a = token;
-	printf("%d -- R\n", a->r);
-	printf("%d -- G\n", a->g);
-	printf("%d -- B\n", a->b);
+	printf("%d -- R\n", a->rgb.r);
+	printf("%d -- G\n", a->rgb.g);
+	printf("%d -- B\n", a->rgb.b);
 	printf("%d -- Bool Check\n", a->check);
 	printf("%lf -- Light\n", a->light);
 }
@@ -25,9 +25,10 @@ void	ft_print_spheres(t_sp *spheres)
 		printf("________________________________________________\n\n");
 		printf("Nodo: %d\n", i);
 		printf("%lf - %lf - %lf --- Coord X - Y - Z\n", \
-			token->x, token->y, token->z);
+			token->cor.x, token->cor.y, token->cor.z);
 		printf("%lf --- Diameter\n", token->diameter);
-		printf("%d,%d,%d --- RGB\n", token->r, token->g, token->b);
+		printf("%d,%d,%d --- RGB\n", token->rgb.r, \
+			token->rgb.g, token->rgb.b);
 		printf("%d --- Check\n", token->check);
 		printf("________________________________________________\n\n");
 		if (!token->next)
@@ -50,10 +51,11 @@ void	ft_print_planes(t_pl *planes)
 		printf("________________________________________________\n\n");
 		printf("Nodo: %d\n", i);
 		printf("%lf - %lf - %lf --- Coord X - Y - Z\n", \
-			token->x, token->y, token->z);
+			token->cor.x, token->cor.y, token->cor.z);
 		printf("%lf - %lf - %lf --- Vector X - Y - Z\n", \
-			token->vx, token->vy, token->vz);
-		printf("%d,%d,%d --- RGB\n", token->r, token->g, token->b);
+		token->vec.x, token->vec.y, token->vec.z);
+		printf("%d,%d,%d --- RGB\n", token->rgb.r, \
+			token->rgb.g, token->rgb.b);
 		printf("%d --- Check\n", token->check);
 		printf("________________________________________________\n\n");
 		if (!token->next)
@@ -76,12 +78,13 @@ void	ft_print_cylinders(t_cy *cylinders)
 		printf("________________________________________________\n\n");
 		printf("Nodo: %d\n", i);
 		printf("%lf - %lf - %lf --- Coord X - Y - Z\n", \
-			token->x, token->y, token->z);
+			token->cor.x, token->cor.y, token->cor.z);
 		printf("%lf - %lf - %lf --- Vector X - Y - Z\n", \
-			token->vx, token->vy, token->vz);
+			token->vec.x, token->vec.y, token->vec.z);
 		printf("%lf --- Diameter\n", token->diameter);
 		printf("%lf --- Height\n", token->height);
-		printf("%d,%d,%d --- RGB\n", token->r, token->g, token->b);
+		printf("%d,%d,%d --- RGB\n", token->rgb.r, \
+			token->rgb.g, token->rgb.b);
 		printf("%d --- Check\n", token->check);
 		printf("________________________________________________\n\n");
 		if (!token->next)
@@ -90,4 +93,3 @@ void	ft_print_cylinders(t_cy *cylinders)
 		i++;
 	}
 }
-

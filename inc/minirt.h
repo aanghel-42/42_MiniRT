@@ -11,6 +11,7 @@
 
 # define WIDTH	1080
 # define HEIGHT 720
+# define KEY_ESC 53
 
 typedef struct s_vector
 {
@@ -97,6 +98,7 @@ typedef struct s_mlx
 typedef struct s_minirt
 {
 	char			**data;
+	void			*mlx_ptr;
 	struct s_a		*ambient;
 	struct s_l		*light;
 	struct s_c		*camera;
@@ -138,14 +140,17 @@ t_cy	*ft_lstnew_cy(t_cy *cy);
 // utils.c
 void	ft_return_head(t_minirt *minirt);
 
-//window.c
-void	ft_init_mlx(t_minirt *minirt);
-void	ft_ray_tracing(t_minirt *minirt);
+//mlx_utils.c
+int		ft_key(int key, t_minirt *minirt);
+void	ft_init_mlx(t_mlx *mlx);
 
 // Print_lst.c
 void	ft_print_lst_ambient(t_a *token);
 void	ft_print_spheres(t_sp *spehres);
 void	ft_print_planes(t_pl *planes);
 void	ft_print_cylinders(t_cy *cylinders);
+
+//DIR Scene
+void	ft_create_scene(t_minirt *minirt);
 
 #endif

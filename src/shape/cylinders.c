@@ -19,15 +19,15 @@ t_cy	*ft_lstnew_cy(t_cy *cy)
 	token = (t_cy *)malloc(sizeof(t_cy));
 	if (!token)
 		return (NULL);
-	token->r = 0;
-	token->g = 0;
-	token->b = 0;
-	token->x = 0.0;
-	token->y = 0.0;
-	token->z = 0.0;
-	token->vx = 0.0;
-	token->vy = 0.0;
-	token->vz = 0.0;
+	token->rgb.r = 0;
+	token->rgb.g = 0;
+	token->rgb.b = 0;
+	token->cor.x = 0.0;
+	token->cor.y = 0.0;
+	token->cor.z = 0.0;
+	token->vec.x = 0.0;
+	token->vec.y = 0.0;
+	token->vec.z = 0.0;
 	token->diameter = 0,0;
 	token->height = 0.0;
 	token->check = false;

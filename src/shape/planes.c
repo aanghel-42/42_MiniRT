@@ -18,15 +18,15 @@ t_pl	*ft_lstnew_pl(t_pl *pl)
 	token = (t_pl *)malloc(sizeof(t_pl));
 	if (!token)
 		return (NULL);
-	token->r = 0;
-	token->g = 0;
-	token->b = 0;
-	token->x = 0.0;
-	token->y = 0.0;
-	token->z = 0.0;
-	token->vx = 0.0;
-	token->vy = 0.0;
-	token->vz = 0.0;
+	token->rgb.r = 0;
+	token->rgb.g = 0;
+	token->rgb.b = 0;
+	token->cor.x = 0.0;
+	token->cor.y = 0.0;
+	token->cor.z = 0.0;
+	token->vec.x = 0.0;
+	token->vec.y = 0.0;
+	token->vec.z = 0.0;
 	token->check = false;
 	token->prev = NULL;
 	token->next = NULL;
@@ -51,4 +51,3 @@ t_pl	*ft_lstadd_back_pl(t_pl *lst, t_pl *new)
 	new->prev = node;
 	return (new);
 }
-
