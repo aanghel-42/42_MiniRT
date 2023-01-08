@@ -30,6 +30,8 @@ int	ft_check_type(char **row, t_minirt *minirt)
 		ft_check_plane(row, minirt);
 	else if (ft_strcmp(row[0], "cy"))
 		ft_check_cylinders(row, minirt);
+	else if (ft_strcmp(row[0], "\n"))
+		return (0);
 	else
 		ft_exit_check(row, minirt, "Element not valid in file\n");
 	return (1);

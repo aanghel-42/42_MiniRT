@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aanghel <aanghel@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 18:09:53 by aanghel           #+#    #+#             */
-/*   Updated: 2023/01/08 00:23:30 by aanghel          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -19,6 +8,9 @@
 # include <mlx.h>
 # include <stdbool.h>
 # include "../mlx/mlx.h"
+
+# define WIDTH 1080
+# define HEIGHT 720
 
 typedef struct s_a
 {
@@ -101,19 +93,29 @@ typedef struct s_cy
 	struct s_cy	*prev;
 }	t_cy;
 
+typedef struct s_mlx
+{
+	int		w;
+	int		h;
+	int		bpp;
+	int		endian;
+	int		w_len;
+	char	*addr;
+	void	*mlx_ptr;
+	void	*window;
+	void	*img;
+}	t_mlx;
+
 typedef struct s_minirt
 {
-	int			w;
-	int			h;
-	char		**data;
-	void		*mlx_ptr;
-	void		*window;
-	struct s_a	*ambient;
-	struct s_l	*light;
-	struct s_c	*camera;
-	struct s_pl	*planes;
-	struct s_sp	*spheres;
-	struct s_cy	*cylinders;
+	char			**data;
+	struct s_a		*ambient;
+	struct s_l		*light;
+	struct s_c		*camera;
+	struct s_pl		*planes;
+	struct s_sp		*spheres;
+	struct s_cy		*cylinders;
+	struct s_mlx	*mlx;
 }	t_minirt;
 
 // DIR Parsing
@@ -149,7 +151,8 @@ t_cy	*ft_lstnew_cy(t_cy *cy);
 void	ft_return_head(t_minirt *minirt);
 
 //window.c
-void	ft_window(t_minirt *minirt);
+void	ft_init_mlx(t_minirt *minirt);
+void	ft_ray_tracing(t_minirt *minirt);
 
 // Print_lst.c
 void	ft_print_lst_ambient(t_a *token);
