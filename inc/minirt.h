@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 18:09:53 by aanghel           #+#    #+#             */
-/*   Updated: 2023/01/08 05:03:15 by pcatapan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
@@ -92,21 +81,29 @@ typedef struct s_cy
 	struct s_cy	*prev;
 }	t_cy;
 
+typedef struct s_mlx
+{
+	int		w;
+	int		h;
+	int		bpp;
+	int		endian;
+	int		w_len;
+	char	*addr;
+	void	*mlx_ptr;
+	void	*window;
+	void	*img;
+}	t_mlx;
+
 typedef struct s_minirt
 {
-	int			w;
-	int			h;
-	char		**data;
-	void		*mlx_ptr;
-	void		*window;
-	t_vec		origin;
-	t_vec		direction;
-	struct s_a	*ambient;
-	struct s_l	*light;
-	struct s_c	*camera;
-	struct s_pl	*planes;
-	struct s_sp	*spheres;
-	struct s_cy	*cylinders;
+	char			**data;
+	struct s_a		*ambient;
+	struct s_l		*light;
+	struct s_c		*camera;
+	struct s_pl		*planes;
+	struct s_sp		*spheres;
+	struct s_cy		*cylinders;
+	struct s_mlx	*mlx;
 }	t_minirt;
 
 // DIR Parsing
@@ -142,7 +139,8 @@ t_cy	*ft_lstnew_cy(t_cy *cy);
 void	ft_return_head(t_minirt *minirt);
 
 //window.c
-void	ft_window(t_minirt *minirt);
+void	ft_init_mlx(t_minirt *minirt);
+void	ft_ray_tracing(t_minirt *minirt);
 
 // Print_lst.c
 void	ft_print_lst_ambient(t_a *token);

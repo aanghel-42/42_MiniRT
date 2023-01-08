@@ -51,8 +51,6 @@ void	ft_init(t_minirt *minirt)
 	minirt->cylinders->next = NULL;
 	minirt->cylinders->prev = NULL;
 	minirt->cylinders->check = false;
-	minirt->w = WIDTH;
-	minirt->h = HEIGHT;
 	minirt->data = (char **)malloc(sizeof(char));
 	minirt->data = NULL;
 }
@@ -74,7 +72,8 @@ int	main(int argc, char **argv)
 	ft_print_spheres(minirt->spheres);
 	ft_print_planes(minirt->planes);
 	ft_print_cylinders(minirt->cylinders);
-	//ft_window(minirt);
+	ft_init_mlx(minirt);
+	ft_ray_tracing(minirt);
 	// ft_return_head(minirt);
 	ft_exit_check(NULL, minirt, NULL);
 }
