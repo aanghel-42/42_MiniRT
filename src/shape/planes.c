@@ -51,3 +51,15 @@ t_pl	*ft_lstadd_back_pl(t_pl *lst, t_pl *new)
 	new->prev = node;
 	return (new);
 }
+
+double	ft_hit_plane(t_pl *pl, t_vec r_o, t_vec rd)
+{
+	double	a;
+	double	b;
+	double	t;
+
+	a = ft_vecdot(ft_subvec(pl->cor, r_o), ft_normalize_vec(pl->vec));
+	b = ft_vecdot(rd, ft_normalize_vec(pl->vec));
+	t = a / b;
+	return (t);
+}

@@ -53,3 +53,12 @@ t_vec	ft_normalize_vec(t_vec v)
 	resultante.z = v.z / grandeur;
 	return (resultante);
 }
+
+t_ray	ft_settings_ray(t_vec origin, t_vec direction)
+{
+	t_ray	ray;
+
+	ray.origin = origin;
+	ray.direction = direction;
+	return (ray);
+}

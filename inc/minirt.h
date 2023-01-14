@@ -12,6 +12,7 @@
 # define WIDTH	1080
 # define HEIGHT 720
 # define KEY_ESC 53
+# define M_INFINITY 1.0e30f
 
 typedef struct s_vector
 {
@@ -19,6 +20,12 @@ typedef struct s_vector
 	double	y;
 	double	z;
 }	t_vec;
+
+typedef struct s_ray
+{
+	t_vec	origin;
+	t_vec	direction;	
+}	t_ray;
 
 typedef struct s_rgb
 {
@@ -82,6 +89,15 @@ typedef struct s_cy
 	struct s_cy	*prev;
 }	t_cy;
 
+typedef struct s_quadra
+{
+	double	a;
+	double	b;
+	double	c;
+	double	t;
+	double	t1;
+}	t_quadra;
+
 typedef struct s_mlx
 {
 	int		w;
@@ -136,6 +152,16 @@ t_pl	*ft_lstadd_back_pl(t_pl *lst, t_pl *new);
 t_pl	*ft_lstnew_pl(t_pl *pl);
 t_cy	*ft_lstadd_back_cy(t_cy *lst, t_cy *new);
 t_cy	*ft_lstnew_cy(t_cy *cy);
+double	ft_hit_cylinder(t_cy *cyl, t_vec r_o, t_vec rd);
+double	ft_hit_plane(t_pl *pl, t_vec r_o, t_vec rd);
+double	ft_hit_sphere(t_sp *sp, t_vec ro, t_vec rd);
+int		ft_get_color_sp(t_minirt *minirt, int color, double closer, t_ray *ray);
+int		ft_get_color_cy(t_minirt *minirt, int color, double closer, t_ray *ray);
+int		ft_get_color_pl(t_minirt *minirt, int color, double closer, t_ray *ray);
+
+// DIR Render
+double	ft_calc_root_cy(double top_relor, double toprd, double h_2, double t);
+double	ft_get_root(double disc, double b);
 
 // utils.c
 void	ft_return_head(t_minirt *minirt);
@@ -150,7 +176,16 @@ void	ft_print_spheres(t_sp *spehres);
 void	ft_print_planes(t_pl *planes);
 void	ft_print_cylinders(t_cy *cylinders);
 
+// DIR Vector
+t_vec	ft_new_vector(double x, double y, double z);
+t_vec	ft_subvec(t_vec u, t_vec v);
+t_vec	ft_normalize_vec(t_vec v);
+t_ray	ft_settings_ray(t_vec origin, t_vec direction);
+t_vec	ft_vec_multi_dot(t_vec u, double dot);
+double	ft_vecdot(t_vec u, t_vec v);
+
 //DIR Scene
 void	ft_create_scene(t_minirt *minirt);
+t_ray	ray_generator(t_minirt *minirt, int x, int y);
 
 #endif

@@ -56,3 +56,20 @@ t_sp	*ft_init_sp(t_sp	*sp)
 		sp = ft_lstadd_back_sp(sp, ft_lstnew_sp(sp));
 	return (sp);
 }
+
+double	ft_hit_sphere(t_sp *sp, t_vec ro, t_vec rd)
+{
+	double	b;
+	double	c;
+	double	disc;
+	t_vec	v;
+
+	v = ft_subvec(ro, sp->cor);
+	b = 2 * ft_vecdot(rd, v);
+	c = ft_vecdot(v, v) - sp->diameter * sp->diameter;
+	disc = b * b - 4 * c;
+	if (disc >= 0)
+		return (ft_get_root(sqrtf(disc), b));
+	else
+		return (-1);
+}

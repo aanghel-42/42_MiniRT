@@ -18,7 +18,6 @@ t_vec	ft_vec_multi_dot(t_vec u, double dot)
 	return (resultante);
 }
 
-
 /**
  * @brief   Calculates the dot product of two vectors
  * 
