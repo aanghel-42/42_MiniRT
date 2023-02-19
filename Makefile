@@ -1,52 +1,85 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: aanghel <aanghel@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/28 16:38:58 by aanghel           #+#    #+#              #
-#    Updated: 2023/01/08 18:32:42 by aanghel          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME	= miniRT
 
-NAME = minirt
+HEAD	= includes
 
-SRCS = Libft/gnl/get_next_line.c \
-	   Libft/printf/*.c \
-	   Libft/ft_is/*.c \
-	   Libft/ft_lst/*.c \
-	   Libft/ft_mem/*.c \
-	   Libft/ft_put/*.c \
-	   Libft/ft_str/*.c \
-	   Libft/ft_to/*.c \
-	   src/*.c \
-	   src/parsing/*.c \
-	   src/free/*.c \
-	   src/shape/*.c \
-	   src/vector/*.c \
-	   src/scene/*.c \
+SRCDIR	= srcs/
 
-OBJS = $(SRC:%.c=%.o)
+LIB		= lib/
 
-CC = gcc
+FILES	=	minirt.c \
+			parsing.c \
+			parse_info.c \
+			parse_elements.c \
+			parse_compound_elements.c \
+			multithreading.c \
+			camera.c \
+			sphere_intersection.c \
+			plane_intersection.c \
+			cylinder_intersection.c \
+			compound_intersections.c \
+			concerning_light.c \
+			sample_pixel.c \
+			supersampling.c \
+			bmp_exporter.c \
+			color_operations.c \
+			procedural_textures.c \
+			rainbow.c \
+			error_handling.c \
+			parsing_utils.c \
+			parsing_utils2.c \
+			utils.c \
+			utils2.c \
 
-FLAGS = #-Wall -Werror -Wextra
+SRCS	= $(addprefix $(SRCDIR), $(FILES))
 
-MLX = -l mlx -framework openGL -framework AppKit
+OBJS	= ${SRCS:.c=.o}
 
-all: $(NAME)
+CC		= gcc -g
 
-$(NAME): $(SRCS)
-	@$(CC) $(FLAGS) $(MLX) $(SRCS) -o $(NAME)
+RM		= rm -f
 
-clean: 
-	@rm -f $(OBJS)
+CFLAGS	= -Wall -Wextra -Werror -I $(HEAD) -D NUM_THREADS=$(NUM_THREADS)
 
-fclean: clean
-	@rm -f $(NAME)
-	@rm -rf minirt.dSYM 
+FLAGS = -L $(LIB)libft -lft -L $(LIB)libvector -lvct
 
-re: fclean all
+MACOS_MACRO = -D MACOS
 
-.PHONY: all clean fclean re
+LINUX_MACRO = -D LINUX
+
+MACOS_FLAGS	= -L $(LIB)minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit 
+
+LINUX_FLAGS = -L $(LIB)minilibx-linux -lmlx -lm -lX11 -lXext -lpthread
+
+UNAME := $(shell uname)
+
+ifeq ($(UNAME),Darwin)
+	NUM_THREADS = $(shell sysctl -n hw.ncpu)
+	CFLAGS += $(MACOS_MACRO)
+	FLAGS += $(MACOS_FLAGS)
+endif
+ifeq ($(UNAME),Linux)
+	NUM_THREADS = $(shell nproc --all)
+	CFLAGS += $(LINUX_MACRO)
+	FLAGS += $(LINUX_FLAGS)
+endif
+
+${NAME}:	${OBJS}
+			make -C $(LIB)libft
+			make -C $(LIB)libvector
+			${CC} ${CFLAGS} $(OBJS) $(FLAGS) -o ${NAME}
+
+all:		${NAME}
+
+clean:
+			make clean -C $(LIB)libft
+			make clean -C $(LIB)libvector
+			${RM} ${OBJS}
+
+fclean:		clean
+			make fclean -C $(LIB)libft
+			make fclean -C $(LIB)libvector
+			${RM} ${NAME}
+
+re:			fclean all
+
+PHONY:		all clean fclean re
