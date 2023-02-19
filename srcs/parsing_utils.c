@@ -1,78 +1,84 @@
-#include "../includes/minirt.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/21 19:31:09 by ngda-sil          #+#    #+#             */
+/*   Updated: 2022/11/27 16:46:08 by ngda-sil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char		*readfile(char *str, int fd)
+#include "../includes/miniRT.h"
+
+char	*trim_free(char *s, char *set)
 {
-	char	buf[BUFSIZE + 1];
-	char	*ptr;
-	int		ret;
+	char	*tmp;
 
-	while ((ret = read(fd, buf, BUFSIZE)) > 0)
-	{
-		ptr = str;
-		buf[ret] = '\0';
-		if (!(str = ft_strjoin(str, buf)))
-			return (NULL);
-		free(ptr);
-	}
-	return (str);
+	tmp = ft_strtrim(s, set);
+	free(s);
+	return (tmp);
 }
 
-int			stoi(char **str)
+int	check_size_tab(char **str, int nb)
 {
-	int i;
-	int	neg;
+	int	i;
 
 	i = 0;
-	neg = 1;
-	if (**str == '-' && *((*str)++))
-		neg = -1;
-	while (ft_isdigit(**str))
-		i = i * 10 + (*((*str)++) - '0');
-	next(str);
-	return (i * neg);
+	while (str[i])
+		i++;
+	if (i != nb)
+		return (1);
+	return (0);
 }
 
-double		stof(char **str)
+void	count_obj(char *f_path, t_main *m)
 {
-	int		w;
-	double	d;
-	int		neg;
+	int		fd;
+	char	*line;
 
-	w = 0;
-	neg = 1;
-	if (**str == '-' && *((*str)++))
-		neg = -1;
-	while (ft_isdigit(**str))
-		w = w * 10 + (*((*str)++) - '0');
-	if (**str == '.')
-		(*str)++;
-	d = 0.0;
-	while (ft_isdigit(**str))
-		d = d * 10 + (*((*str)++) - '0');
-	while (d >= 1)
-		d /= 10;
-	d += w;
-	next(str);
-	return (d * neg);
-}
-
-void		ft_addnewlst_back(t_figures **alst)
-{
-	t_figures	*begin;
-	t_figures	*elem;
-	t_figures	*list;
-
-	begin = *alst;
-	list = *alst;
-	elem = ft_ec_malloc(sizeof(t_figures));
-	elem->next = NULL;
-	if (list)
+	fd = open(f_path, O_RDONLY);
+	if (fd == -1)
+		perror_exit("Problem opening file");
+	line = get_next_line(fd);
+	if (!line)
+		exit_error("File empty\n");
+	while (line)
 	{
-		while (list->next)
-			list = list->next;
-		list->next = elem;
+		if (line && ft_strcmp_case(line, "\n"))
+			m->scn.n_obj++;
+		free(line);
+		line = get_next_line(fd);
 	}
-	else
-		begin = elem;
-	*alst = begin;
+	close(fd);
+}
+
+float	ft_atof(char *s)
+{
+	int		sign;
+	float	res;
+	float	dec;
+	int		i;
+	int		j;
+
+	i = 0;
+	sign = 1;
+	res = 0;
+	dec = 0;
+	if (s[i] == '-')
+	{
+		sign *= -1;
+		i++;
+	}
+	while (s[i] && s[i] != '.')
+		res = (res * 10) + (s[i++] - '0');
+	if (s[i++] == '.')
+	{
+		j = ft_strlen(s) - i;
+		while (s[i])
+			dec = (dec * 10) + (s[i++] - '0');
+		res = res + (dec / pow(10, j));
+	}
+	return (res * sign);
 }
