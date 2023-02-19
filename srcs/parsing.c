@@ -12,7 +12,7 @@ void	fill_obj_tab(char **info, t_main *m)
 	else if (!ft_strncmp(info[0], "L", 1) && ft_strlen(info[0]) == 1)
 		fill_obj_l(info, m, i);
 	else if (!ft_strncmp(info[0], "sp", 2) && ft_strlen(info[0]) == 2)
-		fill_obj_sp(info, m, i);
+		fill_obj_sp(info, m, i);   
 	else if (!ft_strncmp(info[0], "pl", 2) && ft_strlen(info[0]) == 2)
 		fill_obj_pl(info, m, i);
 	else if (!ft_strncmp(info[0], "cy", 2) && ft_strlen(info[0]) == 2)
