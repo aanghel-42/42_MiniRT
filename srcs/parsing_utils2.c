@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 void		in_range(double nb, double min, double max, char *function)
 {

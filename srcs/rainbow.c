@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 static void		define_color(double r, double g, double b, double color[3])
 {

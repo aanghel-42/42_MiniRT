@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 void	ft_fatal(char *message)
 {

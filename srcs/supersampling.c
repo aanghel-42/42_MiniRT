@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 static int			supersample_first_corner(int *color, int center,
 												t_rss rss, t_wrapper *w)

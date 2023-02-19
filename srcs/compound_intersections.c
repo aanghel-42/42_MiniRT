@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 static void		init_cube(t_cube *c, t_figures *lst)
 {

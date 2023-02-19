@@ -1,22 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pcatapan <pcatapan@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 08:42:41 by mgarcia-          #+#    #+#             */
-/*   Updated: 2023/02/19 15:36:56 by pcatapan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
 # include "mlx.h"
 # include "ggl_mlx_define.h"
-# include "libft.h"
-# include "libvct.h"
+# include "../lib/42_Libft/libft.h"
+# include "../lib/libvector/libvct.h"
 # include "figures.h"
 # include <fcntl.h>
 # include <stdlib.h>
@@ -28,9 +18,6 @@
 #  define OS_NAME 1
 # endif
 
-# ifdef LINUX
-#  define OS_NAME 2
-# endif
 
 # define BUFSIZE 32
 

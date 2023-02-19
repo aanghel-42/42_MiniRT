@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 double			solve_plane(t_p3 o, t_p3 d, t_p3 plane_p, t_p3 plane_nv)
 {

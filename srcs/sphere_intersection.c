@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 static void		solve_sphere(double x[2], t_p3 o, t_p3 d, t_figures *lst)
 {

@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 t_p3		reflect_ray(t_p3 ray, t_p3 normal)
 {

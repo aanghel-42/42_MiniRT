@@ -1,85 +1,34 @@
-NAME	= miniRT
+NAME = miniRT
 
-HEAD	= includes
+SRCS = 	./srcs/*.c \
+	   	./lib/42_Libft/gnl/get_next_line.c \
+		./lib/42_Libft/printf/*.c \
+		./lib/42_Libft/ft_is/*.c \
+		./lib/42_Libft/ft_lst/*.c \
+		./lib/42_Libft/ft_mem/*.c \
+		./lib/42_Libft/ft_put/*.c \
+		./lib/42_Libft/ft_str/*.c \
+		./lib/42_Libft/ft_to/*.c \
+		./lib/libvector/*.c
 
-SRCDIR	= srcs/
+OBJS = $(SRCS:%.c=%.o)
 
-LIB		= lib/
+CC = gcc -Wall -Werror -Wextra
 
-FILES	=	minirt.c \
-			parsing.c \
-			parse_info.c \
-			parse_elements.c \
-			parse_compound_elements.c \
-			multithreading.c \
-			camera.c \
-			sphere_intersection.c \
-			plane_intersection.c \
-			cylinder_intersection.c \
-			compound_intersections.c \
-			concerning_light.c \
-			sample_pixel.c \
-			supersampling.c \
-			bmp_exporter.c \
-			color_operations.c \
-			procedural_textures.c \
-			rainbow.c \
-			error_handling.c \
-			parsing_utils.c \
-			parsing_utils2.c \
-			utils.c \
-			utils2.c \
+F_MLX = -L lib/minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit 
 
-SRCS	= $(addprefix $(SRCDIR), $(FILES))
+all: $(NAME)
 
-OBJS	= ${SRCS:.c=.o}
-
-CC		= gcc -g
-
-RM		= rm -f
-
-CFLAGS	= -Wall -Wextra -Werror -I $(HEAD) -D NUM_THREADS=$(NUM_THREADS)
-
-FLAGS = -L $(LIB)libft -lft -L $(LIB)libvector -lvct
-
-MACOS_MACRO = -D MACOS
-
-LINUX_MACRO = -D LINUX
-
-MACOS_FLAGS	= -L $(LIB)minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit 
-
-LINUX_FLAGS = -L $(LIB)minilibx-linux -lmlx -lm -lX11 -lXext -lpthread
-
-UNAME := $(shell uname)
-
-ifeq ($(UNAME),Darwin)
-	NUM_THREADS = $(shell sysctl -n hw.ncpu)
-	CFLAGS += $(MACOS_MACRO)
-	FLAGS += $(MACOS_FLAGS)
-endif
-ifeq ($(UNAME),Linux)
-	NUM_THREADS = $(shell nproc --all)
-	CFLAGS += $(LINUX_MACRO)
-	FLAGS += $(LINUX_FLAGS)
-endif
-
-${NAME}:	${OBJS}
-			make -C $(LIB)libft
-			make -C $(LIB)libvector
-			${CC} ${CFLAGS} $(OBJS) $(FLAGS) -o ${NAME}
-
-all:		${NAME}
+$(NAME) : $(SRCS)
+	@$(CC) $(FLAGS) $(SRCS) $(F_MLX) -o $(NAME)
 
 clean:
-			make clean -C $(LIB)libft
-			make clean -C $(LIB)libvector
-			${RM} ${OBJS}
+	@rm -f $(OBJS)
+			
+fclean:	clean
+	@rm -rf *.dSYM
+	@rm $(NAME)
 
-fclean:		clean
-			make fclean -C $(LIB)libft
-			make fclean -C $(LIB)libvector
-			${RM} ${NAME}
+re:	fclean all
 
-re:			fclean all
-
-PHONY:		all clean fclean re
+.PHONY:	all clean fclean re

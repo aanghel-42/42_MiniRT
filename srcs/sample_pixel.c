@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 static int			*sample_first_column(int *edge_color, int last[2],
 														t_rss rss, t_wrapper *w)

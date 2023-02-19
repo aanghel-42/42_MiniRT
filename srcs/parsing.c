@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 static void		parse2(t_figures **lst, char *str)
 {

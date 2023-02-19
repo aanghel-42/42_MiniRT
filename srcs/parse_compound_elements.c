@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 void		parse_cube(t_figures **elem, char **str)
 {

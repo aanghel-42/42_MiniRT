@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 static t_p3		set_camera(int n, t_rss rss, t_minilibx mlx)
 {

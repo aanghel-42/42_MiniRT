@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 int	create_file(char *name, int i, int j)
 {

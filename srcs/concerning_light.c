@@ -1,4 +1,4 @@
-#include "minirt.h"
+#include "../includes/minirt.h"
 
 void	add_coeficient(double (*rgb)[3], double coef, int color)
 {
