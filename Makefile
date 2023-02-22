@@ -1,13 +1,3 @@
-# COLORS
-
-GREEN	= \033[1;32m
-RED 	= \033[1;31m
-ORANGE	= \033[1;33m
-BUILD	= \e[38;5;225m
-SEP		= \e[38;5;120m
-DUCK	= \e[38;5;227m
-RESET	= \033[0m
-
 NAME = miniRT
 
 SRCS = ./srcs/*.c \

@@ -1,6 +1,6 @@
-#include "../includes/miniRT.h"
+#include "../includes/minirt.h"
 
-char	*trim_free(char *s, char *set)
+char	*ft_trim_free(char *s, char *set)
 {
 	char	*tmp;
 
@@ -9,7 +9,7 @@ char	*trim_free(char *s, char *set)
 	return (tmp);
 }
 
-int	check_size_tab(char **str, int nb)
+int	ft_check_size_tab(char **str, int nb)
 {
 	int	i;
 
@@ -21,7 +21,8 @@ int	check_size_tab(char **str, int nb)
 	return (0);
 }
 
-void	count_obj(char *f_path, t_main *m)
+//function opens and reads the file with gnl and counts the objects present
+void	ft_count_obj(char *f_path, t_main *m)
 {
 	int		fd;
 	char	*line;

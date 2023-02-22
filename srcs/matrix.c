@@ -1,6 +1,9 @@
-#include "../includes/miniRT.h"
+#include "../includes/minirt.h"
 
-t_vec3	rotate(t_vec3 p, float ax, float ay, float az)
+/*functions for matrix calculations*/
+
+//function that rotates the vector
+t_vec3	ft_rotate(t_vec3 p, float ax, float ay, float az)
 {
 	float	point[3][1];
 	float	m[3][3][3];
@@ -8,17 +11,18 @@ t_vec3	rotate(t_vec3 p, float ax, float ay, float az)
 	point[0][0] = p.x;
 	point[1][0] = p.y;
 	point[2][0] = p.z;
-	get_angle_mtx(&m, ax, ay, az);
-	mtx_mul(m[0], point);
-	mtx_mul(m[1], point);
-	mtx_mul(m[2], point);
+	ft_get_angle_mtx(&m, ax, ay, az);
+	ft_mtx_mul(m[0], point);
+	ft_mtx_mul(m[1], point);
+	ft_mtx_mul(m[2], point);
 	p.x = point[0][0];
 	p.y = point[1][0];
 	p.z = point[2][0];
 	return (p);
 }
 
-void	get_angle_mtx(float (*m)[3][3][3], float ax, float ay, float az)
+//function that returns to which angle the matrix must be rotated
+void	ft_get_angle_mtx(float (*m)[3][3][3], float ax, float ay, float az)
 {
 	float	a;
 	float	b;
@@ -27,25 +31,27 @@ void	get_angle_mtx(float (*m)[3][3][3], float ax, float ay, float az)
 	a = ax * M_PI / 180;
 	b = ay * M_PI / 180;
 	c = az * M_PI / 180;
-	mtx_setline(&(*m)[0][0], 1, 0, 0);
-	mtx_setline(&(*m)[0][1], 0, cosf(a), -sinf(a));
-	mtx_setline(&(*m)[0][2], 0, sinf(a), cosf(a));
-	mtx_setline(&(*m)[1][0], cosf(b), 0, sinf(b));
-	mtx_setline(&(*m)[1][1], 0, 1, 0);
-	mtx_setline(&(*m)[1][2], -sinf(b), 0, cosf(b));
-	mtx_setline(&(*m)[2][0], cosf(c), -sinf(c), 0);
-	mtx_setline(&(*m)[2][1], sinf(c), cosf(c), 0);
-	mtx_setline(&(*m)[2][2], 0, 0, 1);
+	ft_mtx_setline(&(*m)[0][0], 1, 0, 0);
+	ft_mtx_setline(&(*m)[0][1], 0, cosf(a), -sinf(a));
+	ft_mtx_setline(&(*m)[0][2], 0, sinf(a), cosf(a));
+	ft_mtx_setline(&(*m)[1][0], cosf(b), 0, sinf(b));
+	ft_mtx_setline(&(*m)[1][1], 0, 1, 0);
+	ft_mtx_setline(&(*m)[1][2], -sinf(b), 0, cosf(b));
+	ft_mtx_setline(&(*m)[2][0], cosf(c), -sinf(c), 0);
+	ft_mtx_setline(&(*m)[2][1], sinf(c), cosf(c), 0);
+	ft_mtx_setline(&(*m)[2][2], 0, 0, 1);
 }
 
-void	mtx_setline(float (*line)[], float a, float b, float c)
+//function that sets the elements in the line of the matrix
+void	ft_mtx_setline(float (*line)[], float a, float b, float c)
 {
 	(*line)[0] = a;
 	(*line)[1] = b;
 	(*line)[2] = c;
 }
 
-void	mtx_mul(float a[3][3], float b[3][1])
+//function that multiplies two matrices together
+void	ft_mtx_mul(float a[3][3], float b[3][1])
 {
 	int		i;
 	int		j;
@@ -74,6 +80,7 @@ void	mtx_mul(float a[3][3], float b[3][1])
 	b[2][0] = res[2][0];
 }
 
+//function that revert the rotates the vector
 t_vec3	rev_rotate(t_vec3 p, float ax, float ay, float az)
 {
 	float	point[3][1];
@@ -82,10 +89,10 @@ t_vec3	rev_rotate(t_vec3 p, float ax, float ay, float az)
 	point[0][0] = p.x;
 	point[1][0] = p.y;
 	point[2][0] = p.z;
-	get_angle_mtx(&m, ax, ay, az);
-	mtx_mul(m[2], point);
-	mtx_mul(m[1], point);
-	mtx_mul(m[0], point);
+	ft_get_angle_mtx(&m, ax, ay, az);
+	ft_mtx_mul(m[2], point);
+	ft_mtx_mul(m[1], point);
+	ft_mtx_mul(m[0], point);
 	p.x = point[0][0];
 	p.y = point[1][0];
 	p.z = point[2][0];

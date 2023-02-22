@@ -1,10 +1,13 @@
-#include "../includes/miniRT.h"
+#include "../includes/minirt.h"
 
-void	get_l_r(char *l_r, t_main *m, int i)
+//function that takes the values for the light ratio
+//and transforms them with atof and inserts 
+//them in the corresponding elements of the struct obj
+void	ft_get_l_r(char *l_r, t_main *m, int i)
 {
 	float	f_l_r;
 
-	if (valid_char_fl(l_r))
+	if (ft_valid_char_fl(l_r))
 		exit_error_free("L_R : Invalid input\n", m->scn.obj);
 	f_l_r = ft_atof(l_r);
 	if (f_l_r < 0 || f_l_r > 1)
@@ -12,17 +15,20 @@ void	get_l_r(char *l_r, t_main *m, int i)
 	m->scn.obj[i].light_r = f_l_r;
 }
 
-void	get_rgb(char *rgb, t_main *m, int i)
+//function that takes the values for the rgb 
+//and transforms them with atof and inserts 
+//them in the corresponding elements of the struct obj
+void	ft_get_rgb(char *rgb, t_main *m, int i)
 {
 	char	**split;
 	int		j;
 	int		tmp;
 
 	j = 0;
-	if (valid_char_rgb(rgb))
+	if (ft_valid_char_rgb(rgb))
 		exit_error_free("RGB : Invalid input : char\n", m->scn.obj);
 	split = ft_split(rgb, ',');
-	if (check_size_tab(split, 3))
+	if (ft_check_size_tab(split, 3))
 	{
 		ft_tab_free((void **)split);
 		exit_error_free("RGB : Invalid input : nb\n", m->scn.obj);
@@ -40,7 +46,10 @@ void	get_rgb(char *rgb, t_main *m, int i)
 	ft_tab_free((void **)split);
 }
 
-void	get_pos(char *coord, t_main *m, int i)
+//function that takes the values for the coordinates
+//and transforms them with atof and inserts 
+//them in the corresponding elements of the struct obj
+void	ft_get_pos(char *coord, t_main *m, int i)
 {
 	char	**split;
 	int		j;
@@ -48,9 +57,9 @@ void	get_pos(char *coord, t_main *m, int i)
 	j = 0;
 	split = ft_split(coord, ',');
 	while (j < 3)
-		if (valid_char(split[j++]))
+		if (ft_valid_char(split[j++]))
 			free_split_exit(split, m->scn.obj, "COORD:Invalid input:char\n");
-	if (check_size_tab(split, 3))
+	if (ft_check_size_tab(split, 3))
 		free_split_exit(split, m->scn.obj, "COORD : Invalid input : nb\n");
 	m->scn.obj[i].pos.x = ft_atof(split[0]);
 	m->scn.obj[i].pos.y = ft_atof(split[1]);
@@ -58,7 +67,10 @@ void	get_pos(char *coord, t_main *m, int i)
 	ft_tab_free((void **)split);
 }
 
-void	get_vec(char *coord, t_main *m, int i)
+//function that takes the values for the vectors
+//and transforms them with atof and inserts 
+//them in the corresponding elements of the struct obj
+void	ft_get_vec(char *coord, t_main *m, int i)
 {
 	char	**split;
 	int		j;
@@ -66,11 +78,11 @@ void	get_vec(char *coord, t_main *m, int i)
 
 	j = -1;
 	split = ft_split(coord, ',');
-	if (check_size_tab(split, 3))
+	if (ft_check_size_tab(split, 3))
 		free_split_exit(split, m->scn.obj, "V3d : Invalid input nb arg\n");
 	while (split[++j])
 	{
-		if (valid_char(split[j]))
+		if (ft_valid_char(split[j]))
 			free_split_exit(split, m->scn.obj, "V3d: Invalid char\n");
 		p = ft_atoi(split[j]);
 		if (p < -1 || p > 1)
@@ -82,7 +94,12 @@ void	get_vec(char *coord, t_main *m, int i)
 	ft_tab_free((void **)split);
 }
 
-void	get_fov(char *fov, t_main *m, int i)
+//function that takes the values for the FOV
+//and transforms them with atof and inserts 
+//them in the corresponding elements of the struct obj
+//check if the char respects the formatting for FOV 
+//-> range 0-180
+void	ft_get_fov(char *fov, t_main *m, int i)
 {
 	int	fov_i;
 	int	j;

@@ -1,6 +1,9 @@
-#include "../includes/miniRT.h"
+#include "../includes/minirt.h"
 
-bool	is_vec_equal(t_vec3 lhs, t_vec3 rhs)
+/*mathematical functions for the calculation of vectors*/
+
+//function that return if the tow vectors are equal
+bool	ft_is_vec_equal(t_vec3 lhs, t_vec3 rhs)
 {
 	bool	res;
 
@@ -14,7 +17,8 @@ bool	is_vec_equal(t_vec3 lhs, t_vec3 rhs)
 	return (res);
 }
 
-float	distance(t_vec3 lhs, t_vec3 rhs)
+//function that return the distance between two vectors
+float	ft_distance(t_vec3 lhs, t_vec3 rhs)
 {
 	float	dist;
 
@@ -24,7 +28,8 @@ float	distance(t_vec3 lhs, t_vec3 rhs)
 	return (dist);
 }
 
-void	color_max(t_vec3 *rgb)
+//function that sets a maximum value for the color
+void	ft_color_max(t_vec3 *rgb)
 {
 	if (rgb->x > 1.0f)
 		rgb->x = 1.0f;

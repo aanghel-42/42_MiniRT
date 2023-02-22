@@ -1,15 +1,16 @@
-#include "../includes/miniRT.h"
+#include "../includes/minirt.h"
 
-float	hit_sphere(t_vec3 center, float radius, t_ray ray)
+//function that checks if a sphere has been hit
+float	ft_hit_sphere(t_vec3 center, float radius, t_ray ray)
 {
 	t_vec3	oc;
 	t_poly	poly;
 	t_inter	res;
 
-	oc = vec_minus(ray.origin, center);
-	poly.a = dot(ray.direction, ray.direction);
-	poly.b = 2.0f * dot(oc, ray.direction);
-	poly.c = dot(oc, oc) - (radius * radius);
+	oc = ft_vec_minus(ray.origin, center);
+	poly.a = ft_dot(ray.direction, ray.direction);
+	poly.b = 2.0f * ft_dot(oc, ray.direction);
+	poly.c = ft_dot(oc, oc) - (radius * radius);
 	res.discri = poly.b * poly.b - (4.0f * poly.a * poly.c);
 	if (res.discri < 0.0f)
 		return (-1.0f);
@@ -19,38 +20,40 @@ float	hit_sphere(t_vec3 center, float radius, t_ray ray)
 	return (res.t1);
 }
 
-float	hit_plane(t_vec3 pos, t_vec3 dir, t_ray ray)
+//function that checks if a plane has been hit
+float	ft_hit_plane(t_vec3 pos, t_vec3 dir, t_ray ray)
 {
 	float	denom;
 	float	t;
 	t_vec3	diff;
 
 	t = 0;
-	denom = dot(dir, ray.direction);
+	denom = ft_dot(dir, ray.direction);
 	if (fabs(denom) > 0.0000001f)
 	{
-		diff = vec_minus(pos, ray.origin);
-		t = dot(diff, dir);
+		diff = ft_vec_minus(pos, ray.origin);
+		t = ft_dot(diff, dir);
 		t = t / denom;
 		return (t);
 	}
 	return (-1.0f);
 }
 
-float	hit_cylinder(t_obj obj, t_ray ray)
+//function that checks if a cylinder has been hit
+float	ft_hit_cylinder(t_obj obj, t_ray ray)
 {
 	t_ray	new_ray;
 	t_vec3	oc;
 	t_poly	poly;
 	t_inter	res;
 
-	obj.vec = normalize(obj.vec);
+	obj.vec = ft_normalize(obj.vec);
 	new_ray.origin = ray.origin;
-	new_ray.direction = cross(ray.direction, obj.vec);
-	oc = vec_minus(ray.origin, obj.pos);
-	poly.a = dot(new_ray.direction, new_ray.direction);
-	poly.b = 2.0f * dot(new_ray.direction, cross(oc, obj.vec));
-	poly.c = dot(cross(oc, obj.vec), cross(oc, obj.vec))
+	new_ray.direction = ft_cross(ray.direction, obj.vec);
+	oc = ft_vec_minus(ray.origin, obj.pos);
+	poly.a = ft_dot(new_ray.direction, new_ray.direction);
+	poly.b = 2.0f * ft_dot(new_ray.direction, ft_cross(oc, obj.vec));
+	poly.c = ft_dot(ft_cross(oc, obj.vec), ft_cross(oc, obj.vec))
 		- powf(0.5f * obj.diameter, 2);
 	res.discri = poly.b * poly.b - (4.0f * poly.a * poly.c);
 	if (res.discri < 0.0f)
@@ -58,21 +61,22 @@ float	hit_cylinder(t_obj obj, t_ray ray)
 	res.t1 = (-poly.b - sqrtf(res.discri)) / (2.0f * poly.a);
 	res.t2 = (-poly.b + sqrtf(res.discri)) / (2.0f * poly.a);
 	res.t = fminf(res.t1, res.t2);
-	hit_wich_cylinder(ray, &res, obj);
+	ft_hit_wich_cylinder(ray, &res, obj);
 	return (res.t);
 }
 
-void	check_intersection(t_obj obj, int i, t_ray *ray)
+//function that checks if the 3 objects intersect each other
+void	ft_check_intersection(t_obj obj, int i, t_ray *ray)
 {
 	float	t_obj;
 
 	t_obj = -1.0f;
 	if (obj.id == SPHERE)
-		t_obj = hit_sphere(obj.pos, (obj.diameter * 0.5f), *ray);
+		t_obj = ft_hit_sphere(obj.pos, (obj.diameter * 0.5f), *ray);
 	else if (obj.id == PLANE)
-		t_obj = hit_plane(obj.pos, obj.vec, *ray);
+		t_obj = ft_hit_plane(obj.pos, obj.vec, *ray);
 	else if (obj.id == CYLINDER)
-		t_obj = hit_cylinder(obj, *ray);
+		t_obj = ft_hit_cylinder(obj, *ray);
 	if (t_obj > 0.0f)
 	{
 		if (ray->i_close == -1)
@@ -88,17 +92,18 @@ void	check_intersection(t_obj obj, int i, t_ray *ray)
 	}
 }
 
-void	check_shadow_intersection(t_obj obj, int i, t_ray *ray, float t_max)
+//function that checks if the shadows of the 3 objects intersect
+void	ft_check_shadow_intersection(t_obj obj, int i, t_ray *ray, float t_max)
 {
 	float	t_obj;
 
 	t_obj = -1.0f;
 	if (obj.id == SPHERE)
-		t_obj = hit_sphere(obj.pos, (obj.diameter * 0.5f), *ray);
+		t_obj = ft_hit_sphere(obj.pos, (obj.diameter * 0.5f), *ray);
 	else if (obj.id == PLANE)
-		t_obj = hit_plane(obj.pos, obj.vec, *ray);
+		t_obj = ft_hit_plane(obj.pos, obj.vec, *ray);
 	else if (obj.id == CYLINDER)
-		t_obj = hit_cylinder(obj, *ray);
+		t_obj = ft_hit_cylinder(obj, *ray);
 	if (t_obj > 0.1f && t_obj < t_max + EPSILON)
 	{
 		if (ray->i_close == -1)

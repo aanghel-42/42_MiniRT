@@ -1,6 +1,7 @@
-#include "../includes/miniRT.h"
+#include "../includes/minirt.h"
 
-t_ray	ray_generation(t_main *main, int x, int y)
+//function that generates the view from the cam
+t_ray	ft_ray_generation(t_main *main, int x, int y)
 {
 	t_vec3	tmp;
 	t_ray	res;
@@ -9,16 +10,17 @@ t_ray	ray_generation(t_main *main, int x, int y)
 
 	u = (((float)x * 2.0f) / (float)main->mlx.x_res - 1.0f) * main->cam.h;
 	v = (((float)y * -2.0f) / (float)main->mlx.y_res + 1.0f) * main->cam.w;
-	res.direction = vec_float_multi(u, main->cam.right);
-	tmp = vec_float_multi(v, main->cam.up);
-	res.direction = vec_addition(tmp, res.direction);
-	res.direction = vec_addition(res.direction, main->cam.forward);
-	res.direction = normalize(res.direction);
+	res.direction = ft_vec_float_multi(u, main->cam.right);
+	tmp = ft_vec_float_multi(v, main->cam.up);
+	res.direction = ft_vec_addition(tmp, res.direction);
+	res.direction = ft_vec_addition(res.direction, main->cam.forward);
+	res.direction = ft_normalize(res.direction);
 	res.origin = main->cam.pos;
 	return (res);
 }
 
-void	pixel_color(t_main *main, t_ray ray, int x, int y)
+//function that colors every single pixel
+void	ft_pixel_color(t_main *main, t_ray ray, int x, int y)
 {
 	t_vec3	rgb;
 	t_vec3	rgb_l;
@@ -26,39 +28,40 @@ void	pixel_color(t_main *main, t_ray ray, int x, int y)
 	float	l;
 	int		i;
 
-	light_pos = find_in_tab(&main->scn, 'L')->pos;
+	light_pos = ft_find_in_tab(&main->scn, 'L')->pos;
 	i = -1;
 	ray.i_close = -1;
 	while (++i < main->scn.n_obj)
-		check_intersection(main->scn.obj[i], i, &ray);
+		ft_check_intersection(main->scn.obj[i], i, &ray);
 	if (ray.i_close > -1)
 	{
-		l = shadow_value(ray, light_pos, main->scn);
-		rgb_l = vec_float_multi(l, main->scn.obj[ray.i_close].rgb);
-		rgb = vec_float_multi(find_in_tab(&main->scn, 'A')->light_r,
-				find_in_tab(&main->scn, 'A')->rgb);
-		rgb = vec_addition(rgb_l, rgb);
-		color_max(&rgb);
-		put_pixel_color(&main->mlx, x, y, rgb);
+		l = ft_shadow_value(ray, light_pos, main->scn);
+		rgb_l = ft_vec_float_multi(l, main->scn.obj[ray.i_close].rgb);
+		rgb = ft_vec_float_multi(ft_find_in_tab(&main->scn, 'A')->light_r,
+				ft_find_in_tab(&main->scn, 'A')->rgb);
+		rgb = ft_vec_addition(rgb_l, rgb);
+		ft_color_max(&rgb);
+		ft_put_pixel_color(&main->mlx, x, y, rgb);
 	}
 	else
-		put_pixel_color(&main->mlx, x, y, new_vec(0.0f, 0.0f, 0.0f));
+		ft_put_pixel_color(&main->mlx, x, y, ft_new_vec(0.0f, 0.0f, 0.0f));
 }
 
-int	frame_loop(t_main *main)
+//function that renders the data on scrren and inserts it in the window
+int	ft_frame_loop(t_main *main)
 {
 	int	x;
 	int	y;
 
-	image_init(&main->mlx);
-	camera_update(main);
+	ft_image_init(&main->mlx);
+	ft_camera_update(main);
 	y = 0;
 	while (y < main->mlx.y_res)
 	{
 		x = 0;
 		while (x < main->mlx.x_res)
 		{
-			pixel_color(main, ray_generation(main, x, y), x, y);
+			ft_pixel_color(main, ft_ray_generation(main, x, y), x, y);
 			x++;
 		}
 		y++;

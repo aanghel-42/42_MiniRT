@@ -1,6 +1,25 @@
-#include "../includes/miniRT.h"
+#include "../includes/minirt.h"
 
-int	keyhook(int keycode, t_main *main)
+/* functions for controlling moves by key */
+
+int	ft_keyhook_more(int keycode, t_main *main)
+{
+	if (keycode == A)
+		main->cam.dir.x -= 0.1f;
+	else if (keycode == D)
+		main->cam.dir.x += 0.1f;
+	else if (keycode == L)
+		main->cam.dir.y += 0.1f;
+	else if (keycode == K)
+		main->cam.dir.y -= 0.1f;
+	else if (keycode == J)
+		main->cam.dir.z += 0.1f;
+	else if (keycode == H)
+		main->cam.dir.z -= 0.1f;
+	return (1);
+}
+
+int	ft_keyhook(int keycode, t_main *main)
 {
 	if (keycode == ESC)
 	{
@@ -20,24 +39,7 @@ int	keyhook(int keycode, t_main *main)
 		main->cam.pos.y -= 0.5f;
 	else if (keycode == E)
 		main->cam.pos.y += 0.5f;
-	keyhook_more(keycode, main);
-	frame_loop(main);
-	return (1);
-}
-
-int	keyhook_more(int keycode, t_main *main)
-{
-	if (keycode == A)
-		main->cam.dir.x -= 0.1f;
-	else if (keycode == D)
-		main->cam.dir.x += 0.1f;
-	else if (keycode == L)
-		main->cam.dir.y += 0.1f;
-	else if (keycode == K)
-		main->cam.dir.y -= 0.1f;
-	else if (keycode == J)
-		main->cam.dir.z += 0.1f;
-	else if (keycode == H)
-		main->cam.dir.z -= 0.1f;
+	ft_keyhook_more(keycode, main);
+	ft_frame_loop(main);
 	return (1);
 }

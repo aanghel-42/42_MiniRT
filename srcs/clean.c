@@ -1,4 +1,4 @@
-#include "../includes/miniRT.h"
+#include "../includes/minirt.h"
 
 void	free_split_exit(char **split, t_obj *obj, char *str)
 {

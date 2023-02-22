@@ -1,6 +1,8 @@
-#include "../includes/miniRT.h"
+#include "../includes/minirt.h"
 
-int	check_type(char *name, char *type )
+//function that return if the file have the right path
+//if is a file.rt
+int	ft_check_type(char *name, char *type )
 {
 	int	n_len;
 	int	t_len;
@@ -18,10 +20,11 @@ int	check_type(char *name, char *type )
 	return (1);
 }
 
-void	check_args(int ac, char **av)
+//check of args and check if the file is .rt
+void	ft_check_args(int argc, char **argv)
 {
-	if (ac != 2)
+	if (argc != 2)
 		exit_error("Wrong number of args\n");
-	if (check_type(av[1], ".rt") == 1)
+	if (ft_check_type(argv[1], ".rt") == 1)
 		exit_error("Wrong file type\n");
 }

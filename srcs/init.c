@@ -1,6 +1,7 @@
-#include "../includes/miniRT.h"
+#include "../includes/minirt.h"
 
-void	init_scn(t_scn *scn)
+//function to initialize the scn struct for the scene
+void	ft_init_scn(t_scn *scn)
 {
 	scn->obj = NULL;
 	scn->n_obj = 0;
@@ -9,7 +10,8 @@ void	init_scn(t_scn *scn)
 	scn->l = 0;
 }
 
-void	init_obj(t_main *m)
+//function to initialize the obj struct
+void	ft_init_obj(t_main *m)
 {
 	int	i;
 

@@ -1,6 +1,7 @@
-#include "../includes/miniRT.h"
+#include "../includes/minirt.h"
 
-int	valid_char(char *s)
+//check that the chars present are not different from digits , - and .
+int	ft_valid_char(char *s)
 {
 	int	i;
 
@@ -21,7 +22,9 @@ int	valid_char(char *s)
 	return (0);
 }
 
-int	valid_char_fl(char *s)
+//check if the char respects the formatting for light ratio 
+//-> (formattazione giusta: 0.2 ) -> range 0.0-1.0
+int	ft_valid_char_fl(char *s)
 {
 	int	i;
 
@@ -32,7 +35,9 @@ int	valid_char_fl(char *s)
 	return (0);
 }
 
-int	valid_char_rgb(char *s)
+//check if the char respects the formatting for rgb 
+//-> (formattazione giusta: 255,255,255) -> range 0-255
+int	ft_valid_char_rgb(char *s)
 {
 	int	i;
 
