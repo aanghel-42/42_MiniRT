@@ -178,7 +178,7 @@ t_vec3	ft_vec_float_multi(float m, t_vec3 vec);
 
 /////////////////////////		vector2.c		////////////////////////////////
 
-float	ft-dot(t_vec3 lhs, t_vec3 rhs);
+float	ft_dot(t_vec3 lhs, t_vec3 rhs);
 t_vec3	ft_new_vec(float x, float y, float z);
 t_vec3	ft_vec_minus(t_vec3 lhs, t_vec3 rhs);
 t_vec3	ft_cross(t_vec3 lhs, t_vec3 rhs);

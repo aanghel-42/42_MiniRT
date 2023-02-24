@@ -81,7 +81,7 @@ void	ft_mtx_mul(float a[3][3], float b[3][1])
 }
 
 //function that revert the rotates the vector
-t_vec3	rev_rotate(t_vec3 p, float ax, float ay, float az)
+t_vec3	ft_rev_rotate(t_vec3 p, float ax, float ay, float az)
 {
 	float	point[3][1];
 	float	m[3][3][3];

@@ -17,7 +17,7 @@ void	ft_image_init(t_mlx *mlx)
 			&mlx->img.line_length, &mlx->img.endian);
 }
 
-int ft_close_window(t_main *m)
+int	ft_close_window(t_main *m)
 {
 	free(m->scn.obj);
 	exit(0);
