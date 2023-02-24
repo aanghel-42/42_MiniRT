@@ -14,14 +14,3 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	}
 	return (dst);
 }
-
-/*int	main()
-{
-	size_t	n = 26;
-	char	dst[] = "Ceci est une destination";
-	char	src[] = "Ceci est une source";
-
-	printf("Before Function = %s\n", dst);
-	memcpy(dst + 5, src, n);
-	printf("after Function = %s\n", dst);
-}*/

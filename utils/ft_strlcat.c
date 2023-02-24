@@ -23,11 +23,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	else
 		return (i);
 }
-
-/*int main()
-{
-	char	dst[40] = "Test";
-
-    printf("Function res = %lu\n", strlcat(dst, "aueeee", 14));
-	printf("String = %s\n", dst);
-}*/

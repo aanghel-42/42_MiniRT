@@ -28,12 +28,3 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
-
-/*int	main()
-{
-	//char haystack[30] = "aaabcabcd";
-	char * empty = (char*)"";
-
-	printf("Value Function C = %s\n", strnstr(empty, "", -1));
-	printf("Value Function Mano = %s\n", ft_strnstr(empty, "", -1));
-}*/

@@ -26,9 +26,14 @@ void	ft_fill_obj_tab(char **info, t_main *m)
 	}
 }
 
+<<<<<<< HEAD
 /* creazione di una matrice info con all'interno
 * tutti gli obj tramite la funzione fill_obj_tab
 */
+=======
+//creazione di una matrice info con all'interno tutti gli obj
+// tramite la funzione fill_obj_tab
+>>>>>>> 8ee63dc4810c31ad44100cb08009e7186dcda392
 void	ft_get_scn(char *f_path, t_main *m)
 {
 	int		fd;

@@ -73,12 +73,3 @@ char	*get_next_line(int fd)
 	}
 	return (gnl_read_loop(fd, &str));
 }
-
-/*int	main()
-{
-	int	fd = open("test.txt", O_RDONLY);
-	int	i = 10;
-
-	while (i-- > 0)
-		printf("%s", get_next_line(fd));
-}*/

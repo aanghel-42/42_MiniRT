@@ -55,8 +55,3 @@ char	*ft_itoa(int n)
 		return (NULL);
 	return (fillerstr(minus, &res, n));
 }
-
-/*int	main()
-{
-	printf("%s\n", ft_itoa(100));
-}*/

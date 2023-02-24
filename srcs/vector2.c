@@ -3,7 +3,7 @@
 /*mathematical functions for the calculation of vectors*/
 
 //function that returns a new vector
-t_vec3	new_vec(float x, float y, float z)
+t_vec3	ft_new_vec(float x, float y, float z)
 {
 	t_vec3	new;
 
@@ -15,7 +15,7 @@ t_vec3	new_vec(float x, float y, float z)
 
 //function that returns the dot product of two vectors
 //dot -> prodotto scalare tra due vettori
-float	dot(t_vec3 lhs, t_vec3 rhs)
+float	ft_dot(t_vec3 lhs, t_vec3 rhs)
 {
 	float	res;
 
@@ -24,7 +24,7 @@ float	dot(t_vec3 lhs, t_vec3 rhs)
 }
 
 //function that returns the subtraction of two vectors
-t_vec3	vec_minus(t_vec3 lhs, t_vec3 rhs)
+t_vec3	ft_vec_minus(t_vec3 lhs, t_vec3 rhs)
 {
 	t_vec3	res;
 
@@ -36,7 +36,7 @@ t_vec3	vec_minus(t_vec3 lhs, t_vec3 rhs)
 
 //function that returns the cross product of the vector
 //cross -> prodotto vettoriale tra due vettori
-t_vec3	cross(t_vec3 lhs, t_vec3 rhs)
+t_vec3	ft_cross(t_vec3 lhs, t_vec3 rhs)
 {
 	t_vec3	res;
 
@@ -47,7 +47,7 @@ t_vec3	cross(t_vec3 lhs, t_vec3 rhs)
 }
 
 //function that returns the length of the vector
-t_vec3	vec_div(float div, t_vec3 vec)
+t_vec3	ft_vec_div(float div, t_vec3 vec)
 {
 	float	k;
 

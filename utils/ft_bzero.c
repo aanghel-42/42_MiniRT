@@ -9,4 +9,3 @@ void	*ft_bzero(void *s, size_t n)
 		((char *)s)[is++] = '\0';
 	return (s);
 }
-

@@ -23,14 +23,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	return (i);
 }
-
-/*int	main()
-{
-	char	dst[] = "Destination";
-	char	src[] = "Je dois etre copie";
-	size_t	dstsize = 13;
-
-	printf("Before function = %s\n", dst);
-	printf("Fonction C = %lu\n", ft_strlcpy(dst, src, dstsize));
-	printf("after Function = %s\n", dst);
-}*/

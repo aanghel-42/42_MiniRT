@@ -23,8 +23,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substr[isub] = '\0';
 	return (substr);
 }
-
-/*int	main()
-{
-	printf("%s\n", ft_substr(NULL, 0, 12));
-}*/

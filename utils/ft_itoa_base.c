@@ -67,10 +67,3 @@ void	*ft_itoa_base(char **res, unsigned long n, char const *base)
 	check_base(res, base);
 	return (NULL);
 }
-
-/*int	main()
-{
-	char	*str;
-
-	printf("%s\n", ft_itoa_base(&str, 0, "0123456789abcdef"));
-}*/

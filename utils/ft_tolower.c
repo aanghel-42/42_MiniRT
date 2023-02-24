@@ -6,11 +6,3 @@ int	ft_tolower(int c)
 		c += 32;
 	return (c);
 }
-
-/*int	main()
-{
-	char	c = 'a';
-
-	printf("Value before Function = %c\n", c);
-	printf("Value After Function = %c\n", ft_tolower(c));
-}*/

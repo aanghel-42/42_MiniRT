@@ -1,8 +1,29 @@
 #include "../includes/minirt.h"
 
+<<<<<<< HEAD
 /*
 * function that returns the value of the shadow in the view from the cam
 */
+=======
+float	ft_split_shadow_value(t_ray shadow, t_ray ray, t_vec3 hit_p, t_scn scn)
+{
+	float	coeff;
+
+	coeff = 0.1f;
+	if (shadow.i_close == -1)
+	{
+		if (scn.obj[ray.i_close].id == PLANE)
+			coeff = fabsf(ft_dot(ft_ray_normal(ray, scn, hit_p), \
+			shadow.direction));
+		else
+			coeff = ft_dot(ft_ray_normal(ray, scn, hit_p), shadow.direction);
+		coeff *= ft_find_in_tab(&scn, 'L')->light_r;
+	}
+	return (coeff);
+}
+
+//function that returns the value of the shadow in the view from the cam
+>>>>>>> 8ee63dc4810c31ad44100cb08009e7186dcda392
 float	ft_shadow_value(t_ray ray, t_vec3 l_pos, t_scn scn)
 {
 	t_ray	shadow;
@@ -12,21 +33,15 @@ float	ft_shadow_value(t_ray ray, t_vec3 l_pos, t_scn scn)
 
 	i = -1;
 	coeff = 0.1f;
-	hit_p = ft_vec_addition(ray.origin, ft_vec_float_multi(ray.t, ray.direction));
+	hit_p = ft_vec_addition(ray.origin, \
+		ft_vec_float_multi(ray.t, ray.direction));
 	shadow.origin = hit_p;
 	shadow.direction = ft_normalize(ft_vec_minus(l_pos, shadow.origin));
 	shadow.i_close = -1;
 	while (++i < scn.n_obj)
 		ft_check_shadow_intersection(scn.obj[i], i, &shadow,
 			ft_distance(l_pos, hit_p));
-	if (shadow.i_close == -1)
-	{
-		if (scn.obj[ray.i_close].id == PLANE)
-			coeff = fabsf(ft_dot(ray_normal(ray, scn, hit_p), shadow.direction));
-		else
-			coeff = ft_dot(ray_normal(ray, scn, hit_p), shadow.direction);
-		coeff *= ft_find_in_tab(&scn, 'L')->light_r;
-	}
+	coeff = ft_split_shadow_value(shadow, ray, hit_p, scn);
 	if (coeff < ft_find_in_tab(&scn, 'A')->light_r)
 		coeff = ft_find_in_tab(&scn, 'A')->light_r;
 	return (coeff);
@@ -39,7 +54,8 @@ t_vec3	ft_ray_normal(t_ray ray, t_scn scn, t_vec3 hit_point)
 
 	normal = ft_new_vec(0.0f, 0.0f, 0.0f);
 	if (scn.obj[ray.i_close].id == SPHERE)
-		normal = ft_normalize(ft_vec_minus(hit_point, scn.obj[ray.i_close].pos));
+		normal = ft_normalize(ft_vec_minus(hit_point, \
+	scn.obj[ray.i_close].pos));
 	else if (scn.obj[ray.i_close].id == PLANE)
 		normal = scn.obj[ray.i_close].vec;
 	else if (scn.obj[ray.i_close].id == CYLINDER)

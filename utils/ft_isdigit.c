@@ -7,12 +7,3 @@ int	ft_isdigit(int c)
 	else
 		return (0);
 }
-
-/*int main()
-{
-	char	c;
-
-	c = 't';
-	printf("Resultat fonction C %i\n", isdigit(c));
-	printf("Resultat fonction mano %i\n", ft_isdigit(c));
-}*/

@@ -12,12 +12,3 @@ char	*ft_strrchr(const char *s, int c)
 	else
 		return (NULL);
 }
-
-/*int	main()
-{
-	const char	s[] = "Guit le boG";
-	char	c = 'a';
-
-	printf("Value Fonction C = %s\n", strrchr(s, c));
-	printf("Value Fonction mano = %s\n", ft_strrchr(s, c));
-}*/

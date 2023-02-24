@@ -48,8 +48,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (ft_substr(s1, start, (len - start)));
 	return (ft_substr(s1, start, (len - start + 1)));
 }
-
-/*int	main()
-{
-	printf("%s\n", ft_strtrim("   xxx   xxx", " x"));
-}*/

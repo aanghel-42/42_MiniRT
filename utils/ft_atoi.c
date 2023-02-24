@@ -25,11 +25,3 @@ int	ft_atoi(const char *str)
 	}
 	return (res * minus);
 }
-
-/*int	main()
-{
-	char	str[] = "-123THERE IS A NYANCAT UNDER YOUR BED";
-
-	printf("Function C Value = %i\n", atoi(str));
-	printf("Function Mano Value = %i\n", ft_atoi(str));
-}*/

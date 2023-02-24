@@ -25,13 +25,3 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	return (dst);
 }
-
-/*int main()
-{
-	char	dst[] = "A";
-	char	src[] = "A";
-
-	printf("Before Function = %s\n", dst);
-	ft_memmove(dst, src, 1);
-	printf("After Function = %s\n", dst);
-}*/
