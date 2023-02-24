@@ -12,7 +12,8 @@ void	ft_hit_wich_cylinder(t_ray ray, t_inter *res, t_obj obj)
 			res->t = res->t2;
 		else
 			res->t = res->t1;
-		hp = ft_vec_addition(ray.origin, ft_vec_float_multi(res->t, ray.direction));
+		hp = ft_vec_addition(ray.origin, \
+			ft_vec_float_multi(res->t, ray.direction));
 		if (ft_cylinder_height(hp, res, obj) < 0.0f)
 			res->t = -1.0f;
 	}

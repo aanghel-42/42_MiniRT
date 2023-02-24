@@ -14,7 +14,7 @@ void	ft_fill_obj_tab(char **info, t_main *m)
 	else if (!ft_strncmp(info[0], "L", 1) && ft_strlen(info[0]) == 1)
 		ft_fill_obj_l(info, m, i);
 	else if (!ft_strncmp(info[0], "sp", 2) && ft_strlen(info[0]) == 2)
-		ft_fill_obj_sp(info, m, i);   
+		ft_fill_obj_sp(info, m, i);
 	else if (!ft_strncmp(info[0], "pl", 2) && ft_strlen(info[0]) == 2)
 		ft_fill_obj_pl(info, m, i);
 	else if (!ft_strncmp(info[0], "cy", 2) && ft_strlen(info[0]) == 2)
@@ -26,7 +26,9 @@ void	ft_fill_obj_tab(char **info, t_main *m)
 	}
 }
 
-//creazione di una matrice info con all'interno tutti gli obj tramite la funzione fill_obj_tab
+/* creazione di una matrice info con all'interno
+* tutti gli obj tramite la funzione fill_obj_tab
+*/
 void	ft_get_scn(char *f_path, t_main *m)
 {
 	int		fd;
@@ -52,9 +54,11 @@ void	ft_get_scn(char *f_path, t_main *m)
 	close(fd);
 }
 
-//check on the args
-//initialize the scn, obj structs
-//check if the values present in the file respect the formatting required by the subject
+/* check on the args
+* initialize the scn, obj structs
+* check if the values present in the file respect
+* the formatting required by the subject
+*/
 void	ft_parse(int argc, char **argv, t_main *m)
 {
 	ft_check_args(argc, argv);

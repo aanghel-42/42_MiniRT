@@ -1,7 +1,8 @@
 #include "../includes/minirt.h"
 
-//function that return if the file have the right path
-//if is a file.rt
+/* function that return if the file have the right path
+* if is a file.rt
+*/
 int	ft_check_type(char *name, char *type )
 {
 	int	n_len;
@@ -20,7 +21,9 @@ int	ft_check_type(char *name, char *type )
 	return (1);
 }
 
-//check of args and check if the file is .rt
+/*
+* check of args and check if the file is .rt
+*/
 void	ft_check_args(int argc, char **argv)
 {
 	if (argc != 2)

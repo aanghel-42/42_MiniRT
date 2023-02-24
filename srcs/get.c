@@ -94,11 +94,12 @@ void	ft_get_vec(char *coord, t_main *m, int i)
 	ft_tab_free((void **)split);
 }
 
-//function that takes the values for the FOV
-//and transforms them with atof and inserts 
-//them in the corresponding elements of the struct obj
-//check if the char respects the formatting for FOV 
-//-> range 0-180
+/* function that takes the values for the FOV
+* and transforms them with atof and inserts 
+* them in the corresponding elements of the struct obj
+* check if the char respects the formatting for FOV 
+* -> range 0-180
+*/
 void	ft_get_fov(char *fov, t_main *m, int i)
 {
 	int	fov_i;

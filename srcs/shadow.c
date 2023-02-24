@@ -1,6 +1,8 @@
 #include "../includes/minirt.h"
 
-//function that returns the value of the shadow in the view from the cam
+/*
+* function that returns the value of the shadow in the view from the cam
+*/
 float	ft_shadow_value(t_ray ray, t_vec3 l_pos, t_scn scn)
 {
 	t_ray	shadow;
@@ -30,7 +32,7 @@ float	ft_shadow_value(t_ray ray, t_vec3 l_pos, t_scn scn)
 	return (coeff);
 }
 
-//function that renders the various elements in the scene
+// Function that renders the various elements in the scene
 t_vec3	ft_ray_normal(t_ray ray, t_scn scn, t_vec3 hit_point)
 {
 	t_vec3	normal;
