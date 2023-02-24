@@ -1,10 +1,5 @@
 #include "../includes/minirt.h"
 
-<<<<<<< HEAD
-/*
-* function that returns the value of the shadow in the view from the cam
-*/
-=======
 float	ft_split_shadow_value(t_ray shadow, t_ray ray, t_vec3 hit_p, t_scn scn)
 {
 	float	coeff;
@@ -23,7 +18,6 @@ float	ft_split_shadow_value(t_ray shadow, t_ray ray, t_vec3 hit_p, t_scn scn)
 }
 
 //function that returns the value of the shadow in the view from the cam
->>>>>>> 8ee63dc4810c31ad44100cb08009e7186dcda392
 float	ft_shadow_value(t_ray ray, t_vec3 l_pos, t_scn scn)
 {
 	t_ray	shadow;
